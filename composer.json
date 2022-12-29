@@ -1,0 +1,19 @@
+{
+    "name": "composer/bin",
+    "description": "baby product website project composer",
+    "type": "project",
+    "license": "Apache 2.0",
+    "autoload": {
+        "psr-4": {
+            "Composer\\Bin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "faustojc",
+            "email": "faustojcboko@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

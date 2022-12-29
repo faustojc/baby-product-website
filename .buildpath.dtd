@@ -1,0 +1,4 @@
+<!ELEMENT buildpath (buildpathentry+)>
+<!ELEMENT buildpathentry EMPTY>
+<!ATTLIST buildpathentry kind NMTOKEN #REQUIRED>
+<!ATTLIST buildpathentry path CDATA #REQUIRED>
