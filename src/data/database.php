@@ -1,13 +1,15 @@
 <?php
 namespace Composer\Bin\data;
 use mysqli;
+use mysqli_result;
 
 /**
- * Database class for storing information about a database
+ * Database class for storing information about a database and modifing it.
+ * 
  */
 class Database
 {
-
+    // database information
     public const HOST_NAME = "localhost";
 
     public const USERNAME = "haiztek";
@@ -30,9 +32,9 @@ class Database
 
     public $LASTNAME = "";
 
-    public $SEX = "";
-
     public $BIRTHDATE = "";
+    
+    public $SEX = "";
 
     public $EMAIL = "";
 
@@ -48,13 +50,13 @@ class Database
 
     public function __construct() { /** TODO: EMPTY */}
 
-    public function set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP)
+    public function set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS,$CITY, $ZIP)
     {
         $this->FIRSTNAME = $FIRSTNAME;
         $this->MI = $MI;
         $this->LASTNAME = $LASTNAME;
-        $this->SEX = $SEX;
         $this->BIRTHDATE = $BIRTHDATE;
+        $this->SEX = $SEX;
         $this->EMAIL = $EMAIL;
         $this->PASSWORD = $PASSWORD;
         $this->CONTACT_NUMBER = $CONTACT_NUMBER;
@@ -69,12 +71,26 @@ class Database
         die("Connect failed: %s\n". $this->conn->error);
     }
 
-    public function insert()
+    public function prepareInsert()
     {
-        $this->sql = "INSERT INTO Database::DB_TABE_NAME 
-            (`FIRSTNAME`, `MI`, `LASTNAME`, `BIRTHDATE`, `SEX`, `EMAIL`, `PASSWORD`, `CONTACT_NUMBER`, `ADDRESS`, `CITY`, `ZIP`) 
-            VALUES ($this->FIRSTNAME, $this->MI, $this->LASTNAME, $this->SEX, $this->BIRTHDATE, $this->EMAIL, $this->PASSWORD, $this->CONTACT_NUMBER, $this->ADDRESS, $this->CITY, $this->ZIP)
-        ";
+        $this->sql = $this->conn->prepare("INSERT INTO ".Database::DB_TABLE_NAME." 
+            (FIRSTNAME, MI, LASTNAME, BIRTHDATE, SEX, EMAIL, PASSWORD, CONTACT_NUMBER, ADDRESS, CITY, ZIP) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ");
+
+        $this->sql->bind_param('sssssssssss', 
+            $this->FIRSTNAME, 
+            $this->MI, 
+            $this->LASTNAME, 
+            $this->BIRTHDATE, 
+            $this->SEX, 
+            $this->EMAIL, 
+            $this->PASSWORD, 
+            $this->CONTACT_NUMBER, 
+            $this->ADDRESS, 
+            $this->CITY, 
+            $this->ZIP
+        );
     }
 
     public function print()
@@ -84,7 +100,11 @@ class Database
             YOUR INPUT: <br/>
             $this->FIRSTNAME <br/>
             $this->LASTNAME <br/>
-            $this->EMAIL
+            $this->EMAIL <br />
+            $this->SEX <br />
+            $this->BIRTHDATE </br/>
         </div>";
+
+        echo mysqli_error($this->conn);
     }
 }
