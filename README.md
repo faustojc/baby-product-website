@@ -1,5 +1,5 @@
 # Baby product website
-Cloudbased 1st sem endterm exam
+Cloudbased 1st sem endterm project
 
 Using the XAMPP for server hosting and database management
 
