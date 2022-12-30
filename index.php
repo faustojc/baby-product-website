@@ -45,10 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<title>Angelcare</title>
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-	<!-- Google Fonts Roboto -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+
 	<!-- Bootstrap -->
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 	<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
@@ -74,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<!-- Notification for login validation -->
                 <?php
 				if (!empty($error_info)) {
-                    echo'
-					<div class="badge bg-danger text-wrap w-50">
-						<p class="fw-bold fs-6 mb-1">'.$error_info.'</p>
-					</div>
-					';
+                    echo
+                        '<div class="badge bg-danger text-wrap w-50">
+				
+                    <p class="fw-bold fs-6 mb-1">' . $error_info . '</p>
+                </div>';
                 }
                 ?>
 
