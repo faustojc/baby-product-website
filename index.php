@@ -105,15 +105,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
         </div>
         <!-- Footer -->
-        <footer class="bg-body py-4 mt-5 w-100">
+        <footer class="bg-body py-4 mt-5 w-100 border-top border-secondary" style="border-width: 20px!important;">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
-                        <h3>Bar Pink</h3>
+                        <h3>AngelCare</h3>
                         <p class="mb-2">Providing your baby needs.</p>
                         <p class="mb-2">
                             Change theme:
-                            <span id="changeTheme" class="badge text-wrap bg-body-tertiary w-auto" role="button"></span>
+                            <span id="changeTheme" class="badge text-wrap text-bg-primary w-auto" role="button"></span>
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -154,9 +154,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-    <script src="js/main.js"></script>
-    <script src="js/form.js"></script>
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/form.js"></script>
+    <script defer src="js/changeTheme.js"></script>
+    <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
