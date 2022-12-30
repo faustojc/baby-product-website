@@ -12,11 +12,9 @@
     <title>Angelcare Sign up</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom styles & js-->
+    <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/main.js"></script>
 </head>
 
 <body data-bs-theme="dark">
@@ -32,6 +30,10 @@
                     <div class="col-md-3">
                         <h3>Bar Pink</h3>
                         <p>Providing your baby needs.</p>
+                        <p class="mb-2">
+                            Change theme:
+                            <span id="changeTheme" class="badge text-wrap bg-body-tertiary w-auto" role="button"></span>
+                        </p>
                     </div>
                     <div class="col-md-3">
                         <h3>Links</h3>
@@ -69,6 +71,10 @@
             </div>
         </footer>
     </div>
+
+    // Script
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

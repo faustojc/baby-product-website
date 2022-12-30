@@ -48,12 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-	<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
-	<!-- Custom styles & js-->
+	<!-- Custom styles -->
 	<link rel="stylesheet" href="css/style.css" />
-    <script src="js/main.js"></script>
-	<script src="js/form.js"></script>
 </head>
 
 <body data-bs-theme="dark">
@@ -113,7 +110,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
                         <h3>Bar Pink</h3>
-                        <p>Providing your baby needs.</p>
+                        <p class="mb-2">Providing your baby needs.</p>
+                        <p class="mb-2">
+                            Change theme:
+                            <span id="changeTheme" class="badge text-wrap bg-body-tertiary w-auto" role="button"></span>
+                        </p>
                     </div>
                     <div class="col-md-3">
                         <h3>Links</h3>
@@ -151,6 +152,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </footer>
     </div>
+
+
+    <script src="js/main.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
