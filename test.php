@@ -1,5 +1,10 @@
 <?php
+/** 
 
+NOTE: This file is used for template. DO NOT use this or replace anything here.
+Copy/duplicate/clone this file and rename it ONLY for creating a webpage.
+
+*/
 ?>
 
 <!DOCTYPE html>
