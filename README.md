@@ -1,5 +1,5 @@
 # Baby product website
-Cloudbased 1st sem endterm project
+Cloudbased e-commerce project website
 
 Using the XAMPP for server hosting and database management
 
