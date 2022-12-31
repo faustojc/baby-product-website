@@ -10,7 +10,13 @@ Using the XAMPP for server hosting and database management
 
 To add pages, <strong>do not put it in any directory</strong>, just create a new php file under the root (baby-product-website) folder.
 
+#### Frameworks used
+ - Node-js
+ - Bootstrap 5.3
+ - XAMPP (Php, MariaDB)
+
 # Bootstrap 5.3
 Get bootstrap 5.3 here to have a same version
 
 https://getbootstrap.com/docs/5.3/getting-started/download/
+
