@@ -1,10 +1,5 @@
 <?php
-/** 
 
-NOTE: This file is used for template. DO NOT use this or replace anything here.
-Copy/duplicate/clone this file and rename it ONLY for creating a webpage.
-
-*/
 ?>
 
 <!DOCTYPE html>
@@ -19,12 +14,10 @@ Copy/duplicate/clone this file and rename it ONLY for creating a webpage.
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom styles & js-->
-    <link rel="stylesheet" href="css/test.css" />
+    <!-- css & js-->
+    <link rel="stylesheet" href="css/test.css"/>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="js/main.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+ 
 </head>
 
 <body>
@@ -60,16 +53,10 @@ Copy/duplicate/clone this file and rename it ONLY for creating a webpage.
                         About
                         </a>
                     </li>
-                    <li class="nav-item dropdown d-flex align-items-center">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link mx-2" href="#">
                         Categories
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Baby Toys</a></li>
-                        <li><a class="dropdown-item" href="#">Clothes for Him</a></li>
-                        <li><a class="dropdown-item" href="#">Clothes for Her</a></li>
-                        <li><a class="dropdown-item" href="#">Others</a></li>
-                      </ul>
+                        </a>
                     </li>
                     <li class="nav-item dropdown d-flex align-items-center">
                       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -138,6 +125,10 @@ Copy/duplicate/clone this file and rename it ONLY for creating a webpage.
             </div>
         </div>
     </footer>
+
+     <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
 
 </body>
 
