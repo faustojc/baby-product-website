@@ -1,0 +1,48 @@
+.navbar{
+	z-index: 99;
+	background-color: #c1dbf2 !important;
+}
+
+body{
+	padding-top: 8em; 
+	background-image: url('../images/babybg2.png');
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.logo{
+	width: 180px;
+	border-radius: 10px;
+	
+}
+
+
+.btn:hover{
+	background-color: #c1dbf2;
+	color: #000;
+}
+
+#Promo h2{
+	color: #ffe4ec !important;
+	text-shadow: 2px 2px #a6a4a4;
+	font-family: "Chewy";
+	font-size: 100px;
+}
+#Most_Popular h2{
+	color: #c1dbf2 !important;
+	text-shadow: 2px 2px #a6a4a4;
+	font-family: "Chewy";
+	font-size: 60px;
+}
+#create h2{
+	color: #c1dbf2 !important;
+	text-shadow: 2px 2px #a6a4a4;
+	font-family: "Chewy";
+	font-size: 45px;
+}
+
+#footer{
+	background-color: #c1dbf2 !important;
+}
+
