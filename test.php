@@ -54,7 +54,7 @@
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
                             <ul class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
                                 Cart
-                                <span class="badge bg-body-tertiary" id="cart-count">0</span>
+                                <span class="badge bg-body" id="cart-count">0</span>
                             </ul>
                         </li>
                     </ul>
