@@ -27,8 +27,8 @@
                 <a class="navbar-brand" href="main.php">
                     <img class="w-75" src="images/angelcare-logo.png" alt="">
                 </a>
-                <div class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
-                    <i class="badge text-wrap text-bg-primary w-auto" id="changeTheme" role="button"></i>
+                <div class="d-inline-flex align-items-center bi bi-moon-fill me-3" id="themeIcon">
+                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" role="button"></i>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
                     <span class="navbar-toggler-icon"></span>
@@ -66,7 +66,7 @@
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
                             <ul class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
                                 Cart
-                                <span class="badge bg-body-tertiary" id="cart-count">0</span>
+                                <span class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</span>
                             </ul>
                         </li>
                     </ul>
