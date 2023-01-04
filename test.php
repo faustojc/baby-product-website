@@ -9,24 +9,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Angelcare Sign up</title>
+    <title>Angelcare</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-    <!-- Custom styles & js-->
+    <!-- Custom CSS-->
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/main.js"></script>
 </head>
 
 <body data-bs-theme="dark">
     <div class="d-flex align-items-center flex-column vh-100">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-body-secondary w-100">
+        <nav class="navbar navbar-expand-lg w-100" style="background-color: var(--theme-primary)">
             <div class="container-fluid">
                 <a class="navbar-brand" href="main.php">
-                    <img class="w-50" src="images/angelcare-logo.png" alt="">
+                    <img class="w-75" src="images/angelcare-logo.png" alt="">
                 </a>
+                <div class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
+                    <i class="badge text-wrap text-bg-primary w-auto" id="changeTheme" role="button"></i>
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -35,18 +38,26 @@
                         <li class="nav-item my-auto mx-lg-2">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
-                        <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link" href="#">Categories</a>
+                        <li class="nav-item dropdown my-auto mx-lg-2">
+                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Baby Toys</a></li>
+                                <li><a class="dropdown-item" href="#">Boy Clothes</a></li>
+                                <li><a class="dropdown-item" href="#">Girl Clothes</a></li>
+                                <li><a class="dropdown-item" href="#">Others</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
                             <a class="nav-link" href="#">About</a>
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
-                        <li class="nav-item my-auto mx-lg-2 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item dropdown my-auto mx-lg-2">
+                            <span class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person"></i>
-                            </a>
+                            </span>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Login</a></li>
                                 <li><a class="dropdown-item" href="#">Register</a></li>
@@ -73,8 +84,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <div class="container-fluid">
-                </div>
+                <div class="container-fluid" id="cart-list"></div>
             </div>
         </div>
         <!-- Content -->
@@ -86,7 +96,7 @@
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
-                        <h3>Bar Pink</h3>
+                        <h3>Angelcare</h3>
                         <p>Providing your baby needs.</p>
                     </div>
                     <div class="col-md-3">
@@ -119,12 +129,15 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col text-center">
-                        <p>Copyright &copy; 2022 Bar Pink</p>
+                        <p>Copyright &copy; 2022 Angelcare</p>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/changeTheme.js"></script>
 </body>
 
 </html>
