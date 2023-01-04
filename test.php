@@ -64,10 +64,10 @@
                             </ul>
                         </li>
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
-                            <ul class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
+                            <span class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
                                 Cart
-                                <span class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</span>
-                            </ul>
+                                <i class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</i>
+                            </span>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
