@@ -102,5 +102,3 @@ function getCookie(data) {
     }
     return "";
 }
-
-
