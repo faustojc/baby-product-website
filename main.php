@@ -12,6 +12,7 @@
     <title>Angelcare Sign up</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
@@ -19,6 +20,72 @@
 
 <body data-bs-theme="dark">
     <div class="d-flex align-items-center flex-column vh-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg w-100" style="background-color: var(--theme-primary)">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="main.php">
+                    <img class="w-75" src="images/angelcare-logo.png" alt="">
+                </a>
+                <div class="d-inline-flex align-items-center bi bi-moon-fill me-3" id="themeIcon">
+                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" role="button"></i>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+                    <ul class="navbar-nav my-auto">
+                        <li class="nav-item my-auto mx-lg-2">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown my-auto mx-lg-2">
+                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Baby Toys</a></li>
+                                <li><a class="dropdown-item" href="#">Boy Clothes</a></li>
+                                <li><a class="dropdown-item" href="#">Girl Clothes</a></li>
+                                <li><a class="dropdown-item" href="#">Others</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item my-auto mx-lg-2">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar my-auto list-unstyled">
+                        <li class="nav-item dropdown my-auto mx-lg-2">
+                            <span class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person"></i>
+                            </span>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Login</a></li>
+                                <li><a class="dropdown-item" href="#">Register</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
+                            <span class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
+                                Cart
+                                <i class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</i>
+                            </span>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Offcanvas -->
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvas-cart">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasTitle">Your cart list</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="container-fluid" id="cart-list"></div>
+            </div>
+        </div>
         <!-- Content -->
         <div class="container">
             TODO: ADD content here
@@ -72,8 +139,7 @@
         </footer>
     </div>
 
-    // Script
-    <script defer src="js/main.js"></script>
+    <script defer src="src/index.js"></script>
     <script defer src="js/changeTheme.js"></script>
     <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
