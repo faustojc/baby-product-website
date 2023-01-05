@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <script defer src="js/main.js"></script>
+    <script defer src="src/index.js"></script>
     <script defer src="js/form.js"></script>
     <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
