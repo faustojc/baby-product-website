@@ -242,7 +242,7 @@
         </footer>
     </div>
 
-    <script src="src/index.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/changeTheme.js"></script>
 </body>
 

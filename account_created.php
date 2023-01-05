@@ -28,7 +28,7 @@
     </div>
 
     <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <script defer src="src/index.js"></script>
+    <script defer src="js/main.js"></script>
     <script defer src="js/changeTheme.js"></script>
 </body>
 
