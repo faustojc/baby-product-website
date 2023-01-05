@@ -24,13 +24,13 @@ function changeTheme() {
 }
 
 const productsPath = "json/products.json";
-const fs = require("fs");
 
-let dataSync;
+let dataSync = [];
 let dataList = [];
+let productsResult = [];
 
 // example for product
-let productsResult = [{
+let exampleProduct = [{
     id: 1,
     name: "Baby Relo",
     category: "watch",
@@ -38,40 +38,22 @@ let productsResult = [{
 }];
 
 /**
- * Writes the data to the JSON file
- * @param {string | Buffer | URL | number} path the JSON file path
- * @param {Buffer | any[]} data the data with its contents, can be an array in JSON format, this must be JSON parse
-*/
-function writeData(path, data) {
-    fs.writeFile(path, JSON.stringify(data), (err) => {
-        if (err) console.log(err.message);
-    });
-}
-
-/**
  * Adds the data to the JSON file
- * @param {string | Buffer | URL | number} path the JSON file path
- * @param {any[] | Buffer} data the data with its contents, can be an array in JSON format
+ * @param {any[]} data the data with its contents, can be an array in JSON format
  */
-function addData(path, data) {
-    fs.readFile(path, 'utf-8',(err) =>{
-        if (err) console.log(err.message);
-        else {
-            dataList = JSON.parse(JSON.stringify(path));
-            dataList.push(data);
-
-            writeData(path, dataList);
-        }
-    });
+function addData(data) {
+    dataSync = localStorage.getItem('product');
+    dataList = JSON.parse(JSON.stringify(dataSync));
+    dataList.push(data);
+    localStorage.setItem('product', JSON.stringify(dataList));
 }
 
 /**
  * Removes the data in JSON file
- * @param {string | Buffer | URL | number} path the JSON file path
  * @param {string} data the data to remove
  */
-function removeData(path, data) {
-    dataSync = fs.readFileSync(path);
+function removeData(data) {
+    dataSync = localStorage.getItem('product');
     dataList = JSON.parse(JSON.stringify(dataSync));
     let end = dataList.length;
 
@@ -82,3 +64,43 @@ function removeData(path, data) {
         }
     }
 }
+
+// Cookies
+
+/**
+ * Sets the cookie data
+ * @param {string} data the column in Database
+ * @param {string} value the value to store
+ */
+function setCookie(data, value) {
+    let date = new Date();
+    date.setTime(date.getTime() + (30*24*60*60*1000));
+
+    let expires = "expires="+ date.toUTCString();
+    document.cookie = data + "=" + value + ";" + expires + ";path=/";
+}
+
+/**
+ * Gets the data value in cookie
+ * @param {string} data the value to get
+ * @returns {string} The cookie data value
+ */
+function getCookie(data) {
+    let email = data + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let decode = decodedCookie.split(';');
+
+    for(const element of decode) {
+        let c = element;
+
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(email) === 0) {
+            return c.substring(email.length, c.length);
+        }
+    }
+    return "";
+}
+
+
