@@ -1,17 +1,12 @@
-.navbar{
-	z-index: 99;
-	background-color: #c1dbf2 !important;
-}
 
 body{
-	padding-top: 8em; 
-	background-image: url('../images/babybg2.png');
+	background-color: var(--bs-body-bg);
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
-.logo{
+.logo {
 	width: 180px;
 	border-radius: 10px;
 	
