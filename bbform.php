@@ -3,18 +3,12 @@ use Composer\Bin\data\Database;
 
 require_once realpath("vendor/autoload.php");
 
-$FIRSTNAME = '';
-$MI = '';
-$LASTNAME = '';
-$SEX = '';
-$BIRTHDATE = '';
-$EMAIL = '';
-
 $data = new Database();
 $data->connect();
 
 if (isset($_POST['submit'])) {
 	// Assign the form data into the variables
+    $USERNAME = $_POST['username'];
     $FIRSTNAME = $_POST['firstname'];
     $MI = $_POST['mi'];
     $LASTNAME = $_POST['lastname'];
@@ -29,14 +23,19 @@ if (isset($_POST['submit'])) {
 
     $data->prepareInsert();
 	// Set the variables into the Database values
-    $data->set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP);
+    $data->set($USERNAME, $FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP);
 	$data->sql->execute();
 
-	// Close connection
-	$data->sql->close();
-	$data->conn->close();
+    $user = $data->sql->fetch();
 
+    if (!empty($user)) {
+        // Close connection
+        $data->sql->close();
+        $data->conn->close();
 
+        header("Location: index.php");
+        exit;
+    }
 }
 else {
 	echo mysqli_error($data->conn);
@@ -62,14 +61,13 @@ else {
 </head>
 
 <body data-bs-theme="dark">
-
 	<section class="d-flex align-items-center flex-column vh-100">
 		<div class="container">
 			<div class="row g-0 w-75 mt-lg-5 mx-auto register-card">
 				<div class="col-lg-5">
 					<img src="images/babyC.png" class="img-fluid h-100" alt="">
 				</div>
-				<div class="col-lg-7" id="Cform">
+				<div class="bg-body col-lg-7 p-4">
 					<h1 class="fw-bold text-primary">REGISTER</h1>
 					<h5 class="fw-semibold" style="color: var(--bs-code-color);">Get the latest update on our new products!</h5>
 					
@@ -112,6 +110,10 @@ else {
 								</label>
 							</div>
 						</div>
+                        <div class="col-lg-8">
+                            <label class="fs-5">Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
 						<div class="col-lg-8">
 							<label class="fs-5">Email</label>
 							<input type="Email" class="form-control" name="email" placeholder="E-mail" required>
@@ -122,7 +124,7 @@ else {
 						</div>
 						<div class="col-lg-8">
 							<label class="fs-5">Contact Number</label>
-							<input type="text" class="form-control" name="contact" placeholder="09478952364" onkeypress="return checkInput(event)" required>
+							<input type="text" class="form-control" name="contact" placeholder="09478952364" id="contact" pattern="/d*" required>
 						</div>
 						<div class="col-lg-8">
 							<label class="fs-5">Location</label>
@@ -160,10 +162,22 @@ else {
 		</div>
 	</section>
 
-    // Scripts
+    <script>
+        let inputField = document.getElementById("contact");
+
+        inputField.addEventListener('keypress', function (event) {
+            let key = event.key;
+
+            if (key !== "Backspace") {
+                let value = parseInt(key);
+
+                if (isNaN(value)) {
+                    event.preventDefault();
+                }
+            }
+        });
+    </script>
     <script defer src="js/main.js"></script>
-    <script defer src="js/form.js"></script>
-    <script defer src="js/changeTheme.js"></script>
     <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
