@@ -92,7 +92,7 @@
             This is the template for the pages
         </div>
         <!-- Footer -->
-        <footer class="bg-body py-4 mt-5 w-100">
+        <footer class="bg-body-tertiary py-4 mt-5 w-100">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
@@ -136,7 +136,7 @@
         </footer>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="src/index.js"></script>
     <script src="js/changeTheme.js"></script>
 </body>
 
