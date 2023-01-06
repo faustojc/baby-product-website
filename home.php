@@ -25,7 +25,7 @@
  
 </head>
 
-<body data-bs-theme="dark">
+<body data-bs-theme="light">
     <div class="d-flex align-items-center flex-column vh-100">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg w-100" style="background-color: var(--theme-primary)">
@@ -42,21 +42,20 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                     <ul class="navbar-nav my-auto">
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" id="navtext"href="#" >Home</a>
                         </li>
                         <li class="nav-item dropdown my-auto mx-lg-2">
-                                <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navtext">
                                     Categories
                                 </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Baby Toys</a></li>
-                                <li><a class="dropdown-item" href="#">Boy Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Girl Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Others</a></li>
+                                <li><a class="dropdown-item" href="#">Nursery & Decor</a></li>
+                                <li><a class="dropdown-item" href="#">Clothes & Diapers</a></li>
+                                <li><a class="dropdown-item" href="#">Bath & Potty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" id="navtext"href="#">About</a>
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
@@ -78,7 +77,7 @@
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success" id="search" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -98,7 +97,7 @@
 
         <div class="container position-relative text-center">
             <header class="position-relative text-center text-white mb-5">
-                <img src="images/banner1.png" class="w-100" alt="Banner"/>
+                <img src="images/banner1.png" class="w-100" alt="Banner" id="sale" />
             </header>
             <div id="Most_Popular">
                 <h2 class="display-6 py-5">
@@ -108,58 +107,60 @@
 
 
             <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row my-5" id="new">
-                <div class="card m-2">
+                <div class="card m-2" id="prodimg" >
                     <a href="./product.html">
-                    <img src="images/product.png" class="card-img-top" height="300" alt="Product"/>
+                    <img src="images/p7.png" class="card-img-top" height="300" alt="Product"  />
                     </a>
-                    <div class="card-body">
-                        <p class="card-text fw-bold">
-                            Product Name
+                    <div class="card-body" >
+                        <p class="card-text fw-bold text-black" >
+                             Bear Onesie
                         </p>
                         <small class="text-secondary">
-                            ₱1000.00
+                            ₱900.00
                         </small>
                     </div>
                 </div>
 
-                <div class="card m-2">
+                
+
+                <div class="card m-2" id="prodimg">
                     <a href="product.html">
-                    <img src="images/product.png" class="card-img-top" height="300" alt="Product"/>
+                    <img src="images/p4.png" class="card-img-top" height="300" alt="Product"/>
                     </a>
                     <div class="card-body">
-                        <p class="card-text fw-bold">
-                            Product Name
+                        <p class="card-text fw-bold text-black">
+                            Wooden High Chair
                         </p>
                         <small class="text-secondary">
-                            ₱1000.00
+                            ₱1,700.00
                         </small>
                     </div>
                 </div>
 
-                <div class="card m-2">
+                <div class="card m-2" id="prodimg">
                     <a href="product.html">
-                    <img src="images/product.png" class="card-img-top" height="300" alt="Product"/>
+                    <img src="images/p9.png" class="card-img-top" height="300" alt="Product"/>
                     </a>
                     <div class="card-body">
-                        <p class="card-text fw-bold">
-                            Product Name
+                        <p class="card-text fw-bold text-black">
+                            Pink Overalls
                         </p>
                         <small class="text-secondary">
-                            ₱1000.00
+                            ₱950.00
                         </small>
                     </div>
                 </div>
 
-                <div class="card m-2">
+                <div class="card m-2" id="prodimg">
                     <a href="product.html">
-                    <img src="images/product.png" class="card-img-top" height="300" alt="Product"/>
+                    <img src="images/p1.png" class="card-img-top" height="300" alt="Product"/>
                     </a>
                     <div class="card-body">
-                        <p class="card-text fw-bold">
-                            Product Name
+                        <p class="card-text fw-bold text-black">
+                            Crib Mobil
                         </p>
                         <small class="text-secondary">
-                            ₱1000.00
+                            ₱1,500.00
                         </small>
                     </div>
                 </div>
@@ -167,24 +168,38 @@
 
             <a href="#" class="btn btn-outline-dark my-5"> View All Products</a>
 
+            <div id="Most_Popular">
+                 <h2 class="display-6 py-5">
+                    Recent Products
+                </h2>
+            </div>
+
             <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row my-5">
                 <div class="position-relative m-2">
-                    <img src="images/product2.png" height="300" alt="Product"/>
-                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block">Product</a>
+                    <img src="images/p8.png" height="300" alt="Product" id="rec"/>
+                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block" id="view">View</a>
                 </div>
                 <div class="position-relative m-2">
-                    <img src="images/product2.png" height="300" alt="Product"/>
-                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block">Product</a>
+                    <img src="images/p2.png" height="300" alt="Product" id="rec"/>
+                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block" id="view">View</a>
                 </div>
                 <div class="position-relative m-2">
-                    <img src="images/product2.png" height="300" alt="Product"/>
-                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block">Product</a>
+                    <img src="images/p12.png" height="300" alt="Product" id="rec"/>
+                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block" id="view">View</a>
+                </div>
+                 <div class="position-relative m-2">
+                    <img src="images/p15.png" height="300" alt="Product" id="rec"/>
+                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block" id="view">View</a>
+                </div>
+                 <div class="position-relative m-2">
+                    <img src="images/p6.png" height="300" alt="Product" id="rec"/>
+                    <a href="#" class="btn btn-light position-absolute start-1 bottom-0 ms-2 mb-2 d-block" id="view">View</a>
                 </div>
             </div>
 
             <div class="row text-start align-items-center gy-5 my-5">
                 <div class="col-12 col-md-6">
-                    <img src="images/product3.png" class="w-100 h-100">
+                    <img src="images/product3.png" class="w-100 h-100" id="sale">
                 </div>
                 <div class="col-12 col-md-6">
                     <div id="Promo">
