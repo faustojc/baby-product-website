@@ -1,18 +1,18 @@
 [data-bs-theme=light] {
-    --theme-primary: #ffe4ec;
-    --theme-primary-variant: #000;
-    --theme-secondary: #03DAC6;
-    background-image: url('../images/babybg2.png');
+    --theme-primary: #ffe4ec; /* gin change ko ni ang color */
+    --theme-primary-variant: #000; /* gin change ko ni ang color */
+    --theme-secondary: #03DAC6; 
+    background-image: url('../images/babybg2.png'); /* gin change ko ni ang bg image */
 }
 
 [data-bs-theme=dark]  {
-    --theme-primary: #ffe4ec;
-    --theme-primary-variant: #000;
-    --theme-secondary: #000;
-    background-image: url('../images/babybg3.png');
+    --theme-primary: #ffe4ec; /* gin change ko ni ang color */
+    --theme-primary-variant: #000; /* gin change ko ni ang color */
+    --theme-secondary: #03DAC6; 
+    background-image: url('../images/babybg3.png'); /* gin change ko ni ang bg image */
 }
 
-[data-bs-theme=dark] #navtext{
+[data-bs-theme=dark] #navtext{ /* gin change ko ni ang text color sa nav bar kung dark mode */
     color: #000 !important;
 }
 
