@@ -1,15 +1,19 @@
 [data-bs-theme=light] {
-    --theme-primary: #FF7597;
-    --theme-primary-variant: #3700B3;
+    --theme-primary: #ffe4ec;
+    --theme-primary-variant: #000;
     --theme-secondary: #03DAC6;
-    background-image: url('../images/babybg.png');
+    background-image: url('../images/babybg2.png');
 }
 
-[data-bs-theme=dark] {
-    --theme-primary: #1F1A24;
-    --theme-primary-variant: #3700B3;
-    --theme-secondary: #018786;
-    background-color: var(--bs-body-bg);
+[data-bs-theme=dark]  {
+    --theme-primary: #ffe4ec;
+    --theme-primary-variant: #000;
+    --theme-secondary: #000;
+    background-image: url('../images/babybg3.png');
+}
+
+[data-bs-theme=dark] #navtext{
+    color: #000 !important;
 }
 
 body {
@@ -18,3 +22,5 @@ body {
     background-size: cover;
     -o-background-size: cover;
 }
+
+
