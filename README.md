@@ -24,11 +24,11 @@ Using the XAMPP for server hosting and database management
 		<link rel="stylesheet" href="css/style.css"/>
 	</head>
 	<body>
-	... some code
+		... some code
 
-	Custom JS goes here (must be before the </body> tag)
-	<script src="js/main.js"></script>
-	<script src="js/changeTheme.js"></script>
+		Custom JS goes here (must be before the </body> tag)
+		<script src="js/main.js"></script>
+		<script src="js/changeTheme.js"></script>
 	</body>
 </html>
 ```
