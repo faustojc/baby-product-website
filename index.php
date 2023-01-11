@@ -16,7 +16,7 @@ $error_info = '';
 if (!empty($_COOKIE['email'])) {
     $database->conn->close();
 
-    header("Location: main.php");
+    header("Location: home.php");
     exit;
 }
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
             $database->conn->close();
 
-			header("Location: main.php");
+			header("Location: home.php");
 			exit;
         } else {
             $error_info = 'Incorrect email or password';
