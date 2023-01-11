@@ -1,5 +1,5 @@
 <?php
-use Composer\Bin\data\Database;
+use Server\data\Database;
 
 require_once realpath("vendor/autoload.php");
 
@@ -13,6 +13,13 @@ $password = '';
 
 $error_info = '';
 
+if (!empty($_COOKIE['email'])) {
+    $database->conn->close();
+
+    header("Location: main.php");
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
@@ -20,13 +27,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($email) || empty($password)) {
 		$error_info = 'Email or password are required';
     } else {
-		$stmt = $database->conn->prepare("SELECT * FROM ".Database::DB_TABLE_NAME." WHERE EMAIL = ? and PASSWORD = ?");
+		$stmt = $database->conn->prepare("SELECT FIRSTNAME, EMAIL, PASSWORD FROM costumer WHERE EMAIL = ? and PASSWORD = ?");
 		$stmt->bind_param("ss", $email, $password);
 		$stmt->execute();
 
 		$user = $stmt->fetch();
 
 		if (!empty($user)) {
+            if ($_POST['keepMe'] === 'true') {
+                setcookie('email', $email, time() + 8640, '/');
+            }
+
+            $_SESSION['email'] = $email;
+
+            $stmt->close();
+            $database->conn->close();
+
 			header("Location: main.php");
 			exit;
         } else {
@@ -48,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<!-- Bootstrap -->
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
 	<!-- Custom styles -->
 	<link rel="stylesheet" href="css/style.css" />
@@ -71,8 +88,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo
                         '<div class="badge bg-danger text-wrap w-50">
 				
-                    <p class="fw-bold fs-6 mb-1">' . $error_info . '</p>
-                </div>';
+                            <p class="fw-bold fs-6 mb-1">' . $error_info . '</p>
+                        </div>';
                 }
                 ?>
 
@@ -92,6 +109,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<div class="col-12">
 						<span class="ml-auto"><a href="#" class="text-decoration-none link-info">Forgot password?</a></span>
 					</div>
+                    <!-- Keep me signed in -->
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" name="keepMe" id="keepMe">
+                            <label class="form-check-label" for="keepMe">
+                                Keep me signed in
+                            </label>
+                        </div>
+                    </div>
 
 					<!-- Sign up btn -->
 					<div class="col-12">
@@ -105,10 +131,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</div>
         </div>
     </div>
-
-    <script defer src="js/main.js"></script>
-    <script defer src="js/form.js"></script>
-    <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
