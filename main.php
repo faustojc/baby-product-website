@@ -127,7 +127,7 @@ if (isset($_POST['logout'])) {
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
-                        <h3>AngelCare</h3>
+                        <h3>Angelcare</h3>
                         <p class="mb-2">Providing your baby needs.</p>
                         <p class="mb-2">
                             Change theme:
@@ -164,7 +164,7 @@ if (isset($_POST['logout'])) {
                 </div>
                 <div class="row mt-5">
                     <div class="col text-center">
-                        <p>Copyright &copy; 2022 Bar Pink</p>
+                        <p>Copyright &copy; 2022 Angelcare</p>
                     </div>
                 </div>
             </div>
