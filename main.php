@@ -1,4 +1,32 @@
 <?php
+use Server\data\Database;
+
+require_once realpath("vendor/autoload.php");
+
+session_start();
+
+$database = new Database();
+$database->connect();
+
+$result = $database->getData($_SESSION['email']);
+$name = '';
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $name = $row['FIRSTNAME'];
+    }
+}
+
+if (isset($_POST['logout'])) {
+    if (!empty($_COOKIE['email'])) {
+        setcookie('email', "", time() - 8640, '/');
+    }
+
+    session_destroy();
+    session_abort();
+    header("Location: index.php");
+    exit;
+}
 
 ?>
 
@@ -26,9 +54,6 @@
                 <a class="navbar-brand" href="main.php">
                     <img class="w-75" src="images/angelcare-logo.png" alt="">
                 </a>
-                <div class="d-inline-flex align-items-center bi bi-moon-fill me-3" id="themeIcon">
-                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" role="button"></i>
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,10 +67,9 @@
                                 Categories
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Baby Toys</a></li>
-                                <li><a class="dropdown-item" href="#">Boy Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Girl Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Others</a></li>
+                                <li><a class="dropdown-item" href="#">Nursery and Decoration</a></li>
+                                <li><a class="dropdown-item" href="#">Clothes and Diapers</a></li>
+                                <li><a class="dropdown-item" href="#">Bath and Potty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
@@ -53,13 +77,20 @@
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
+                        <!-- user -->
                         <li class="nav-item dropdown my-auto mx-lg-2">
-                            <span class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person"></i>
+                            <span class="nav-link d-inline-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <p class="bi bi-person m-0"> <?php echo $name?></p>
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
-                                <li><a class="dropdown-item" href="#">Register</a></li>
+                                <li class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
+                                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" style="cursor: pointer;"></i>
+                                </li>
+                                <li class="dropdown-item-text">
+                                    <form method="POST" class="m-0">
+                                        <button type="submit" name="logout" class="btn btn-link text-decoration-none">Log out</button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
@@ -71,7 +102,7 @@
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>
