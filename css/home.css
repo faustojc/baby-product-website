@@ -6,12 +6,18 @@ body{
     background-size: cover;
     -o-background-size: cover;
 }
+.navbar{
+	z-index: 99;
+	color: #000;
+}
 .logo {
 	width: 180px;
 	border-radius: 10px;
 	
 }
-
+.btn{
+	background-color: #fff;
+}
 
 .btn:hover{
 	background-color: #c1dbf2;
@@ -40,4 +46,32 @@ body{
 #footer{
 	background-color: #c1dbf2 !important;
 }
+/* nag add ko d changes sa search button */
+#search{
+	color: #757375 !important;
+	border-color: #757375 !important;
+}
+#search: hover{
+	color: #000;
+}
 
+#sale{
+	margin-top: 5%;
+	border-radius: 10px;
+}
+#rec{
+	border-radius: 10px;
+}
+
+#prodimg{
+	width: 20%;
+	background-color: #e8e9eb;
+}
+#view{
+	border-color: #e8e9eb;
+	border-width: 2px;
+
+}
+#rec{
+	border: 2px solid #e8e9eb;
+}
