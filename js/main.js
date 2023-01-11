@@ -32,55 +32,12 @@ function removeData(data) {
     }
 }
 
-// Cookies
-
-/**
- * Sets the cookie data
- * @param {string} data the column in Database
- * @param {string} value the value to store
- */
-function setCookie(data, value) {
-    let date = new Date();
-    date.setTime(date.getTime() + (30*24*60*60*1000));
-
-    let expires = "expires="+ date.toUTCString();
-    document.cookie = data + "=" + value + ";" + expires + ";path=/";
-}
-
-/**
- * Gets the data value in cookie
- * @param {string} data the value to get
- * @returns {string} The cookie data value
- */
-function getCookie(data) {
-    let email = data + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let decode = decodedCookie.split(';');
-
-    for(const element of decode) {
-        let c = element;
-
-        while (c.charAt(0) === ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(email) === 0) {
-            return c.substring(email.length, c.length);
-        }
-    }
-    return "";
-}
-
 // User info
-
 let userInfo = {
     username: [],
     fistname: [],
     email: []
 };
-
-let usernameValue = '';
-let firstnameValue = '';
-let emailValue = '';
 
 /**
  * Adds the user's data to the specified user's info
@@ -114,18 +71,6 @@ function removeUserInfo(info, data) {
         }
     }
 }
-
-document.querySelector('#username').addEventListener('keypress', function (event) {
-    usernameValue = document.getElementById('username').value;
-});
-
-document.querySelector('#firstname ').addEventListener('keypress', function (event) {
-    firstnameValue = document.getElementById('firstname ').value;
-});
-
-document.querySelector('#email').addEventListener('keypress', function (event) {
-    emailValue = document.getElementById('email').value;
-});
 
 // XMLHttpRequest for getting request from client to server
 
