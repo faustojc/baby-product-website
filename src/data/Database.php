@@ -6,8 +6,7 @@ use mysqli_result;
 use mysqli_stmt;
 
 /**
- * Database class for storing information about a database and modifing it.
- * 
+ * Database class for storing information about a database and modifying it.
  */
 class Database
 {
@@ -48,9 +47,7 @@ class Database
 
     public string $ZIP = "";
 
-    public function __construct() {/** EMPTY*/}
-
-    public function set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS,$CITY, $ZIP): void
+    public function set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP): void
     {
         $this->FIRSTNAME = $FIRSTNAME;
         $this->MI = $MI;
@@ -104,7 +101,6 @@ class Database
     }
 
     /** Gets the data in array in database by finding the email
-     * @param string $column To search and compare the value in database
      * @param string $value The value to compare
      * @return bool|mysqli_result data results
      */
