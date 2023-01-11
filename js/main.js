@@ -1,41 +1,8 @@
-// Theme change
-let body = document.querySelector("body");
-let currTheme = body.getAttribute("data-bs-theme");
-let themeIcon = document.querySelector("#themeIcon");
-
-// Set the text info in changeTheme id to the current theme
-document.querySelector("#changeTheme").textContent = currTheme.toUpperCase();
-
-function changeTheme() {
-    // Change the data-bs-theme attribute
-    if (currTheme === "light") {
-        // Change to dark theme
-        body.setAttribute("data-bs-theme", "dark");
-        themeIcon.classList.replace("bi-sun-fill", "bi-moon-fill");
-    }
-    else {
-        // Change to light theme
-        body.setAttribute("data-bs-theme", "light");
-        themeIcon.classList.replace("bi-moon-fill", "bi-sun-fill");
-    }
-
-    // Get the current theme of body
-    currTheme = body.getAttribute("data-bs-theme");
-}
-
 const productsPath = "json/products.json";
 
 let dataSync = [];
 let dataList = [];
 let productsResult = [];
-
-// example for product
-let exampleProduct = [{
-    id: 1,
-    name: "Baby Relo",
-    category: "watch",
-    path: "file path"
-}];
 
 /**
  * Adds the data to the JSON file
@@ -102,3 +69,80 @@ function getCookie(data) {
     }
     return "";
 }
+
+// User info
+
+let userInfo = {
+    username: [],
+    fistname: [],
+    email: []
+};
+
+let usernameValue = '';
+let firstnameValue = '';
+let emailValue = '';
+
+/**
+ * Adds the user's data to the specified user's info
+ * @param {string} info The user's info (username, firstname, email)
+ * @param {string} data The data to add
+ */
+function addUserInfo(info, data) {
+    for (let property of Object.keys(userInfo)) {
+        if (property.toUpperCase() === info.toUpperCase()) {
+            userInfo[property].push(data);
+        }
+    }
+}
+
+/**
+ * Removes the user's data to the specified user's info
+ * @param {string} info The user's info (username, firstname, email)
+ * @param {string} data The data to remove
+ */
+function removeUserInfo(info, data) {
+    for (let property of Object.keys(userInfo)) {
+        if (property.toUpperCase() === info.toUpperCase()) {
+            let length = userInfo[property].length;
+
+            for (let i = 0; i < length; i++) {
+                if (userInfo[property][i].toUpperCase() === data.toUpperCase()) {
+                    userInfo[property][i].splice(i, 1);
+                    return;
+                }
+            }
+        }
+    }
+}
+
+document.querySelector('#username').addEventListener('keypress', function (event) {
+    usernameValue = document.getElementById('username').value;
+});
+
+document.querySelector('#firstname ').addEventListener('keypress', function (event) {
+    firstnameValue = document.getElementById('firstname ').value;
+});
+
+document.querySelector('#email').addEventListener('keypress', function (event) {
+    emailValue = document.getElementById('email').value;
+});
+
+// XMLHttpRequest for getting request from client to server
+
+let xmlHttpRequest = new XMLHttpRequest;
+let data;
+
+xmlHttpRequest.onload = function () {
+    if (xmlHttpRequest.status === 200) {
+        data = JSON.parse(this.responseText);
+
+        console.log("Successfully stored the data");
+    } else {
+        console.log("Failed to store in data");
+    }
+};
+
+// Open request and send
+xmlHttpRequest.open("POST", src, true);
+xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
+xmlHttpRequest.send("userData=" + userInfo);
