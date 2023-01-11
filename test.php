@@ -54,13 +54,15 @@
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
+                        <!-- user -->
                         <li class="nav-item dropdown my-auto mx-lg-2">
                             <span class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person"></i>
+                                <i class="bi bi-person" id="namePlaceholder"><?php echo $name?></i>
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
-                                <li><a class="dropdown-item" href="#">Register</a></li>
+                                <li class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon" style="cursor: pointer;">
+                                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme"></i>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
@@ -72,7 +74,7 @@
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-info" type="submit">Search</button>
                     </form>
                 </div>
             </div>
