@@ -30,7 +30,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v5.3.0-alpha1): util/index.js
+   * Bootstrap (v5.3.0-alpha1): util/bootstrap.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
