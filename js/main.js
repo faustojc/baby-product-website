@@ -1,8 +1,5 @@
-const productsPath = "json/products.json";
-
 let dataSync = [];
 let dataList = [];
-let productsResult = [];
 
 /**
  * Adds the data to the JSON file
@@ -74,20 +71,26 @@ function removeUserInfo(info, data) {
 
 // XMLHttpRequest for getting request from client to server
 
-let xmlHttpRequest = new XMLHttpRequest;
-let data;
+/**
+ * Sends request to the server with defined URL in src
+ * @param {string|URL} src The URL or source path
+ */
+function sendRequest(src) {
+    let xmlHttpRequest = new XMLHttpRequest;
+    let data;
 
-xmlHttpRequest.onload = function () {
-    if (xmlHttpRequest.status === 200) {
-        data = JSON.parse(this.responseText);
+    xmlHttpRequest.onload = function () {
+        if (xmlHttpRequest.status === 200) {
+            data = JSON.parse(this.responseText);
 
-        console.log("Successfully stored the data");
-    } else {
-        console.log("Failed to store in data");
-    }
-};
+            console.log("Successfully stored the data");
+        } else {
+            console.log("Failed to store in data");
+        }
+    };
 
 // Open request and send
-xmlHttpRequest.open("POST", src, true);
-xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
-xmlHttpRequest.send("userData=" + userInfo);
+    xmlHttpRequest.open("POST", src, true);
+    xmlHttpRequest.setRequestHeader("Content-Type", "application/json");
+    xmlHttpRequest.send("userData=" + userInfo);
+}
