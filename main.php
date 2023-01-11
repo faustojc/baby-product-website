@@ -41,6 +41,7 @@ if (isset($_POST['logout'])) {
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
@@ -172,7 +173,6 @@ if (isset($_POST['logout'])) {
 
     <script defer src="js/main.js"></script>
     <script defer src="js/changeTheme.js"></script>
-    <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
