@@ -3,3 +3,5 @@
 /.vs
 /.vscode
 /.idea
+/node_modules/fs/README.md
+/node_modules/fs/package.json
