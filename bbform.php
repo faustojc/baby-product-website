@@ -1,14 +1,28 @@
 <?php
-use Composer\Bin\data\Database;
+use Server\data\Database;
 
 require_once realpath("vendor/autoload.php");
 
-$data = new Database();
-$data->connect();
+session_start();
+ob_start();
+
+$database = new Database();
+$database->connect();
+
+$data = json_decode($_POST['userData']);
+$result = $database->conn->query("SELECT USERNAME, FIRSTNAME, EMAIL FROM costumer");
+
+while ($row = $result->fetch_assoc()) {
+    $data['username'][] = $row['USERNAME'];
+    $data['firstname'][] = $row['FIRSTNAME'];
+    $data['email'][] = $row['EMAIL'];
+}
+
+echo json_encode($data);
+ob_end_clean();
 
 if (isset($_POST['submit'])) {
-	// Assign the form data into the variables
-    $USERNAME = $_POST['username'];
+    // Assign the form data into the variables
     $FIRSTNAME = $_POST['firstname'];
     $MI = $_POST['mi'];
     $LASTNAME = $_POST['lastname'];
@@ -21,24 +35,21 @@ if (isset($_POST['submit'])) {
     $CITY = $_POST['city'];
     $ZIP = $_POST['zip'];
 
-    $data->prepareInsert();
-	// Set the variables into the Database values
-    $data->set($USERNAME, $FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP);
-	$data->sql->execute();
+    $database->prepareInsert();
+    // Set the variables into the Database values
+    $database->set($FIRSTNAME, $MI, $LASTNAME, $SEX, $BIRTHDATE, $EMAIL, $PASSWORD, $CONTACT_NUMBER, $ADDRESS, $CITY, $ZIP);
+    $database->sql->execute();
 
-    $user = $data->sql->fetch();
+    $user = $database->sql->fetch();
 
     if (!empty($user)) {
         // Close connection
-        $data->sql->close();
-        $data->conn->close();
+        $database->sql->close();
+        $database->conn->close();
 
         header("Location: index.php");
         exit;
     }
-}
-else {
-	echo mysqli_error($data->conn);
 }
 
 ?>
@@ -53,6 +64,7 @@ else {
 
 	<!-- Bootstrap CSS -->
 	<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
 	<!-- Custom styles-->
 	<link rel="stylesheet" href="css/bbform.css" />
@@ -75,7 +87,7 @@ else {
 					<form action="bbform.php" method="POST" class="row g-3">
 						<div class="col-lg-8">
 							<label for="firstname" class="fs-5">First name</label>
-							<input type="text" class="form-control" id="firstname" name="firstname" style="text-transform: capitalize;" placeholder="John Clif" required />
+							<input type="text" class="form-control" id="firstname " name="firstname" style="text-transform: capitalize;" placeholder="John Clif" required />
 						</div>
 						<div class="col-lg">
 							<label for="mi" class="fs-5">M.I.</label>
@@ -110,17 +122,13 @@ else {
 								</label>
 							</div>
 						</div>
-                        <div class="col-lg-8">
-                            <label class="fs-5">Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="Username" required>
-                        </div>
 						<div class="col-lg-8">
 							<label class="fs-5">Email</label>
-							<input type="Email" class="form-control" name="email" placeholder="E-mail" required>
+							<input type="Email" class="form-control" name="email" id="email" placeholder="E-mail" required>
 						</div>
 						<div class="col-lg-8">
 							<label class="fs-5">Password</label>
-							<input type="Password" class="form-control" name="password" placeholder="******" required>
+							<input type="Password" class="form-control" name="password" id="password" placeholder="******" required>
 						</div>
 						<div class="col-lg-8">
 							<label class="fs-5">Contact Number</label>
@@ -162,6 +170,7 @@ else {
 		</div>
 	</section>
 
+    <script defer src="js/main.js"></script>
     <script>
         let inputField = document.getElementById("contact");
 
@@ -177,8 +186,6 @@ else {
             }
         });
     </script>
-    <script defer src="js/main.js"></script>
-    <script defer src="js/bootstrap/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
