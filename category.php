@@ -1,30 +1,56 @@
 <?php
+use Server\data\Database;
+
+require_once realpath("vendor/autoload.php");
+
+session_start();
+
+$database = new Database();
+$database->connect();
+
+$result = $database->getData($_SESSION['email']);
+$name = '';
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $name = $row['FIRSTNAME'];
+    }
+}
+
+if (isset($_POST['logout'])) {
+    if (!empty($_COOKIE['email'])) {
+        setcookie('email', "", time() - 8640, '/');
+    }
+
+    session_destroy();
+    session_abort();
+    header("Location: index.php");
+    exit;
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Categories</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Angelcare Categories</title>
 
-    <title>Angelcare Sign up</title>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
+
     <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans%3A400%2C400italic%2C600%2C700%2C700italic%7COswald%3A400%2C300%7CVollkorn%3A400%2C400italic'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href='https://fonts.googleapis.com/css?family=Chewy' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/category.css">
+    <!-- Custom CSS-->
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body data-bs-theme="dark">
+<body data-bs-theme="light">
     <div class="d-flex align-items-center flex-column vh-100">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg w-100" style="background-color: var(--theme-primary)">
@@ -32,26 +58,22 @@
                 <a class="navbar-brand" href="main.php">
                     <img class="w-75" src="images/angelcare-logo.png" alt="">
                 </a>
-                <div class="d-inline-flex align-items-center bi bi-moon-fill me-3" id="themeIcon">
-                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" role="button"></i>
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                     <ul class="navbar-nav my-auto">
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                         </li>
                         <li class="nav-item dropdown my-auto mx-lg-2">
-                                <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categories
-                                </span>
+                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Baby Toys</a></li>
-                                <li><a class="dropdown-item" href="#">Boy Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Girl Clothes</a></li>
-                                <li><a class="dropdown-item" href="#">Others</a></li>
+                                <li><a class="dropdown-item" href="#">Nursery and Decoration</a></li>
+                                <li><a class="dropdown-item" href="#">Clothes and Diapers</a></li>
+                                <li><a class="dropdown-item" href="#">Bath and Potty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
@@ -59,13 +81,17 @@
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
+                        <!-- user -->
                         <li class="nav-item dropdown my-auto mx-lg-2">
-                                <span class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-person"></i>
+                                <span class="nav-link d-inline-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <p class="bi bi-person m-0"> <?php echo $name?></p>
                                 </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Login</a></li>
-                                <li><a class="dropdown-item" href="#">Register</a></li>
+                                <li class="dropdown-item-text">
+                                    <form method="POST" class="m-0">
+                                        <button type="submit" name="logout" class="btn btn-link text-decoration-none">Log out</button>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
@@ -77,7 +103,7 @@
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -93,103 +119,87 @@
             </div>
         </div>
 
-        <!-- slider -->
-        <main class="main-content">
-            <section class="slideshow">
-                <div class="slideshow-inner">
-                    <div class="slides">
-                        <div class="slide is-active ">
-                            <div class="slide-content">
-                                <div class="caption">
-                                    <div class="title">Nursery & Decors</div>
-                                    <div class="text">
-                                        <p> Happy childhood memories start here!</p>
-                                    </div>
-                                    <a href="#" class="btn">
-                                        <span class="btn-inner">Shop Now</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="image-container">
-                                <img src="images/Nursery.png" alt="" class="image" />
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <div class="slide-content">
-                                <div class="caption">
-                                    <div class="title">Clothes & Diapers</div>
-                                    <div class="text">
-                                        <p>Leave your cares to us! Get 20% off minimum spend of 2,000</p>
-                                    </div>
-                                    <a href="#" class="btn">
-                                        <span class="btn-inner">Shop Now</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="image-container">
-                                <img src="images/Clothes.jpg" alt="" class="image" />
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <div class="slide-content">
-                                <div class="caption">
-                                    <div class="title">Bath & Potty</div>
-                                    <div class="text">
-                                        <p>Reliable care for your precious little ones!</p>
-                                    </div>
-                                    <a href="#" class="btn">
-                                        <span class="btn-inner">Shop Now</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="image-container">
-                                <img src="images/Bath.png" alt="" class="image" />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="pagination">
-                        <div class="item is-active">
-                            <span class="icon">1</span>
-                        </div>
-                        <div class="item">
-                            <span class="icon">2</span>
-                        </div>
-                        <div class="item">
-                            <span class="icon">3</span>
-                        </div>
-                    </div>
-                    <div class="arrows">
-                        <div class="arrow prev">
-                  <span class="svg svg-arrow-left">
-                    <svg version="1.1" id="svg4-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M13,26c-0.256,0-0.512-0.098-0.707-0.293l-12-12c-0.391-0.391-0.391-1.023,0-1.414l12-12c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L2.414,13l11.293,11.293c0.391,0.391,0.391,1.023,0,1.414C13.512,25.902,13.256,26,13,26z"/> </svg>
-                    <span class="alt sr-only"></span>
-                  </span>
-                        </div>
-                        <div class="arrow next">
-                  <span class="svg svg-arrow-right">
-                    <svg version="1.1" id="svg5-Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="26px" viewBox="0 0 14 26" enable-background="new 0 0 14 26" xml:space="preserve"> <path d="M1,0c0.256,0,0.512,0.098,0.707,0.293l12,12c0.391,0.391,0.391,1.023,0,1.414l-12,12c-0.391,0.391-1.023,0.391-1.414,0s-0.391-1.023,0-1.414L11.586,13L0.293,1.707c-0.391-0.391-0.391-1.023,0-1.414C0.488,0.098,0.744,0,1,0z"/> </svg>
-                    <span class="alt sr-only"></span>
-                  </span>
-                        </div>
+        <!-- Carousel -->
+        <div class="carousel slide w-75 mb-5" id="carouselProduct" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselProduct" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <!-- Bath -->
+                <div class="carousel-item active" data-bs-interval="5000">
+                    <img src="images/bath.png" class="d-block" alt="bath category" style="width:100%; height: 600px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: var(--theme-primary);">Bath and Potty</h1>
+                        <p class="fs-4 text-dark">Reliable care for your precious little ones!</p>
                     </div>
                 </div>
-            </section>
-        </main>
-        <!--end slider-->
+                <!-- Clothes -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="images/clothes.jpg" class="d-block" alt="clothes category" style="width:100%; height: 600px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: var(--theme-primary);">Clothes and Diapers</h1>
+                        <p  class="fs-4 text-dark">Leave your cares to us! Get 20% off minimum spend of 2,000</p>
+                    </div>
+                </div>
+                <!-- Nursery -->
+                <div class="carousel-item" data-bs-interval="5000">
+                    <img src="images/nursery.png" class="d-block" alt="nursery category" style="width:100%; height: 600px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h1 style="color: var(--theme-primary);">Nursery and Decoration</h1>
+                        <p  class="fs-4 text-dark">Happy childhood memories start here!</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProduct" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProduct" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <hr class="w-75" style="background-color: var(--theme-primary-variant);">
+
+        <!-- Content -->
+        <div class="container">
+            <ul class="nav nav-pills nav-fill mb-5">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#nursery" id="nursery">Nursery and Decoration</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#clothes" id="clothes">Clothes and Diapers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#bath" id="bath">Bath and Potty</a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center flex-wrap flex-column flex-lg-row my-5" id="currentCategory">
+                <!-- show all products based on selected category -->
+            </div>
+        </div>
 
         <!-- Footer -->
-        <footer class="bg-body-tertiary py-4 mt-5 w-100">
+        <footer class="bg-body py-4 mt-5 w-100 border-top border-secondary" style="border-width: 20px!important;">
             <div class="container">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-md-3">
                         <h3>Angelcare</h3>
-                        <p>Providing your baby needs.</p>
+                        <p class="mb-2">Providing your baby needs.</p>
+                        <p class="mb-2 d-inline-flex align-items-center">
+                            Change theme:
+                            <span class="bi bi-moon-fill mx-1" id="themeIcon">
+                                <i class="badge text-wrap text-bg-primary w-auto" id="changeTheme" style="cursor: pointer;"></i>
+                            </span>
+                        </p>
                     </div>
                     <div class="col-md-3">
                         <h3>Links</h3>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="text-decoration-none">Home</a></li>
+                            <li><a href="home.php" class="text-decoration-none">Home</a></li>
                             <li><a href="#" class="text-decoration-none">About</a></li>
                             <li><a href="#" class="text-decoration-none">Contact</a></li>
                         </ul>
@@ -202,7 +212,7 @@
                         </p>
                         <p>
                             Phone: 555-555-5555<br>
-                            Email: info@example.com
+                            Email: angelcare@gmail.com
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -223,10 +233,13 @@
         </footer>
     </div>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+    <script type="application/json" src="json/products.json"></script>
     <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
     <script src="js/changeTheme.js"></script>
+    <script>
+        getActiveNav();
+        showCategoryProducts();
+    </script>
 </body>
-
 </html>
