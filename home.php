@@ -66,16 +66,16 @@ if (isset($_POST['logout'])) {
                 <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                     <ul class="navbar-nav my-auto">
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                         </li>
                         <li class="nav-item dropdown my-auto mx-lg-2">
                             <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categories
                             </span>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Nursery and Decoration</a></li>
-                                <li><a class="dropdown-item" href="#">Clothes and Diapers</a></li>
-                                <li><a class="dropdown-item" href="#">Bath and Potty</a></li>
+                                <li><a class="dropdown-item" href="category.php">Nursery and Decoration</a></li>
+                                <li><a class="dropdown-item" href="category.php">Clothes and Diapers</a></li>
+                                <li><a class="dropdown-item" href="category.php">Bath and Potty</a></li>
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
@@ -89,9 +89,6 @@ if (isset($_POST['logout'])) {
                                 <p class="bi bi-person m-0"> <?php echo $name?></p>
                             </span>
                             <ul class="dropdown-menu">
-                                <li class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
-                                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" style="cursor: pointer;"></i>
-                                </li>
                                 <li class="dropdown-item-text">
                                     <form method="POST" class="m-0">
                                         <button type="submit" name="logout" class="btn btn-link text-decoration-none">Log out</button>
@@ -141,7 +138,7 @@ if (isset($_POST['logout'])) {
 
             </div>
 
-            <a href="#" class="btn btn-outline-dark my-5"> View All Products</a>
+            <a href="category.php" class="btn btn-outline-secondary my-5"> View All Products</a>
 
             <div id="Most_Popular">
                  <h2 class="display-6 py-5">
@@ -149,7 +146,7 @@ if (isset($_POST['logout'])) {
                 </h2>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row my-5" id="recentProducts">
+            <div class="d-flex justify-content-between flex-wrap flex-column flex-lg-row my-5" id="recentProducts">
 
             </div>
 
@@ -175,9 +172,11 @@ if (isset($_POST['logout'])) {
                     <div class="col-md-3">
                         <h3>Angelcare</h3>
                         <p class="mb-2">Providing your baby needs.</p>
-                        <p class="mb-2">
+                        <p class="mb-2 d-inline-flex align-items-center">
                             Change theme:
-                            <span id="changeTheme" class="badge text-wrap text-bg-primary w-auto" role="button"></span>
+                            <span class="bi bi-moon-fill mx-1" id="themeIcon">
+                                <i class="badge text-wrap text-bg-primary w-auto" id="changeTheme" style="cursor: pointer;"></i>
+                            </span>
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -217,10 +216,13 @@ if (isset($_POST['logout'])) {
         </footer>
     </div>
 
-    <script defer type="application/json" src="json/products.json"></script>
-    <script defer src="js/main.js"></script>
-    <script defer src="js/products.js"></script>
-    <script defer src="js/changeTheme.js"></script>
+    <script type="application/json" src="json/products.json"></script>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/changeTheme.js"></script>
+    <script>
+        showProducts();
+    </script>
 </body>
 
 </html>
