@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 
-<body data-bs-theme="dark">
+<body data-bs-theme="light">
 	<div class="d-flex align-items-center flex-column vh-100">
 		<!-- Content -->
 		<div class="container">
