@@ -84,9 +84,6 @@ if (isset($_POST['logout'])) {
                                 <p class="bi bi-person m-0"> <?php echo $name?></p>
                             </span>
                         <ul class="dropdown-menu">
-                            <li class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
-                                <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" style="cursor: pointer;"></i>
-                            </li>
                             <li class="dropdown-item-text">
                                 <form method="POST" class="m-0">
                                     <button type="submit" name="logout" class="btn btn-link text-decoration-none">Log out</button>
@@ -131,7 +128,9 @@ if (isset($_POST['logout'])) {
                     <p class="mb-2">Providing your baby needs.</p>
                     <p class="mb-2">
                         Change theme:
-                        <span id="changeTheme" class="badge text-wrap text-bg-primary w-auto" role="button"></span>
+                        <span class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
+                            <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" style="cursor: pointer;"></i>
+                        </span>
                     </p>
                 </div>
                 <div class="col-md-3">
