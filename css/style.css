@@ -1,18 +1,19 @@
 [data-bs-theme=light] {
     --theme-primary: #f67291; /* gin change ko ni ang color */
     --theme-primary-variant: #913d7f; /* gin change ko ni ang color */
-    --theme-secondary: #03DAC6; 
-    background-image: url('../images/babybg2.png'); /* gin change ko ni ang bg image */
+    --theme-secondary: #03DAC6;
+    --theme-background: url('../images/babybg2.png');
 }
 
 [data-bs-theme=dark]  {
     --theme-primary: #442b50; /* gin change ko ni ang color */
     --theme-primary-variant: #913d7f; /* gin change ko ni ang color */
-    --theme-secondary: #03DAC6; 
-    background-image: url('../images/babybg2.png'); /* gin change ko ni ang bg image */
+    --theme-secondary: #03DAC6;
+    --theme-background: #0c0c0c;
 }
 
 body {
+    background: var(--theme-background);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
