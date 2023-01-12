@@ -1,5 +1,3 @@
-let searchResult = [];
-
 let productsList = [
     {
         "name": "Wall Decors",
@@ -178,11 +176,10 @@ let productsList = [
     }
 ];
 
-showProducts();
+let length = productsList.length;
 
 function showProducts() {
     let randomProducts = [];
-    let length = productsList.length;
 
     while (randomProducts.length < 8) {
         let i = parseInt(Math.random() * length);
@@ -197,24 +194,138 @@ function showProducts() {
         if (i % 2 === 0) {
             document.getElementById("mostPopular").innerHTML += `
             <div class="card m-2" style="width: 18rem; height: 100%">
-                <img src="${randomProducts[i].picture}" class="card-img-top" height="280" alt="product"/>
+                <img src="${randomProducts[i].picture}" class="card-img-top"height="280" alt="product"/>
                 <div class="card-body p-2">
                     <h4 class="card-title">${randomProducts[i].name}</h4>
-                    <h6 class="card-text text-success">Price: P${randomProducts[i].price}</h6>
-                    <a class="btn btn-outline-info">Shop now</a>
+                    <h6 class="card-text">Price: P<span class="text-success">${randomProducts[i].price}</span></h6>
+                    <button class="btn btn-outline-info shopBtn" type="button" value="${randomProducts[i].name}">Shop now</button>
                 </div>
             </div>`;
         }
         else {
             document.getElementById("recentProducts").innerHTML += `
             <div class="card m-2" style="width: 18rem; height: 100%">
-                <img src="${randomProducts[i].picture}" class="card-img-top" height="280" alt="product"/>
+                <img src="${randomProducts[i].picture}" class="card-img-top"height="280" alt="product"/>
                 <div class="card-body p-2">
                     <h4 class="card-title">${randomProducts[i].name}</h4>
-                    <h6 class="card-text text-success">Price: P${randomProducts[i].price}</h6>
-                    <a class="btn btn-outline-info">Shop now</a>
+                    <h6 class="card-text">Price: P<span class="text-success">${randomProducts[i].price}</span></h6>
+                    <button class="btn btn-outline-info shopBtn" type="button" value="${randomProducts[i].name}">Shop now</button>
                 </div>
             </div>`;
         }
+    }
+
+    shopBtnValue();
+}
+
+let activeNav = '';
+
+function getActiveNav() {
+    let nursery = document.querySelector('#nursery');
+    let clothes = document.querySelector('#clothes');
+    let bath = document.querySelector('#bath');
+
+    if (nursery.classList.contains("active")) {
+        activeNav = nursery.id;
+    }
+    else if (clothes.classList.contains("active")) {
+        activeNav = clothes.id;
+    }
+    else {
+        activeNav = bath.id;
+    }
+
+    // nursery
+    nursery.addEventListener('click', function () {
+        // Remove the active nav
+        removeSpecificClass("#clothes, #bath", "active");
+
+        // Make active by adding active class
+        document.querySelector('#nursery').className += ' active';
+        activeNav = nursery.id;
+        showCategoryProducts();
+    });
+
+    // clothes
+    clothes.addEventListener('click', function () {
+        // Remove the active nav
+        removeSpecificClass("#nursery, #bath", "active");
+
+        // Make active by adding active class
+        document.querySelector('#clothes').className += ' active';
+        activeNav = clothes.id;
+        showCategoryProducts();
+    });
+
+    // bath
+    bath.addEventListener('click', function () {
+        // Remove the active nav
+        removeSpecificClass("#clothes, #nursery", "active");
+
+        // Make active by adding active class
+        document.querySelector('#bath').className += ' active';
+        activeNav = bath.id;
+        showCategoryProducts();
+    });
+}
+
+/**
+ * Removes specific classes with specified value to be removed
+ * @param {string} selector Multiple or single class(es) or id(s) to select. For removing single class or id (".class" or "#class") otherwise, (".classA, .classB") or ("#classA, #classB")
+ * @param {string} value The value to remove
+ */
+function removeSpecificClass(selector, value) {
+    document.querySelectorAll(selector).forEach(function (element) {
+        element.classList.remove(value);
+    })
+}
+
+function showCategoryProducts() {
+    let category = " ";
+
+    switch (activeNav) {
+        case "nursery":
+            category = "Nursery and Decoration";
+            break;
+        case "clothes":
+            category = "Clothes and Diapers";
+            break;
+        case "bath":
+            category = "Bath and Potty";
+            break;
+    }
+
+    let productsContainer = document.getElementById("currentCategory");
+
+    if (productsContainer.hasChildNodes()) {
+        productsContainer.textContent = '';
+    }
+
+    for (let i = 0; i < length; i++) {
+        if (productsList[i].category === category) {
+            document.getElementById("currentCategory").innerHTML += `
+            <div class="card m-2" style="width: 18rem; height: 100%;">
+                <img src="${productsList[i].picture}" class="card-img-top" height="280" alt="product"/>
+                <div class="card-body p-2">
+                    <h4 class="card-title">${productsList[i].name}</h4>
+                    <h6 class="card-text">Price: P<span class="text-success">${productsList[i].price}</span></h6>
+                    <button class="btn btn-outline-info shopBtn" type="button" value="${productsList[i].name}">Shop now</button>
+                </div>
+            </div>`;
+        }
+    }
+
+    shopBtnValue();
+}
+
+function shopBtnValue() {
+    let shopBtn = document.querySelectorAll('.shopBtn');
+    let length = shopBtn.length;
+
+    for (let i = 0; i < length; i++) {
+        shopBtn[i].addEventListener('click', function (event) {
+            sessionStorage.setItem('product', this.value);
+            location.href = "per_product.php";
+        });
     }
 }
