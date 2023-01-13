@@ -93,10 +93,10 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </li>
                         <li class="nav-item d-flex my-auto mx-lg-2 align-items-center">
-                                <span class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
-                                    Cart
-                                    <i class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</i>
-                                </span>
+                            <span class="bi bi-cart-fill p-0" role="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">
+                                Cart
+                                <i class="badge" id="cart-count" style="background-color: var(--theme-primary-variant)">0</i>
+                            </span>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -131,11 +131,11 @@ if (isset($_POST['logout'])) {
                     <div class="col-md-3">
                         <h3>Angelcare</h3>
                         <p class="mb-2">Providing your baby needs.</p>
-                        <p class="mb-2">
+                        <p class="mb-2 d-inline-flex align-items-center">
                             Change theme:
-                            <span class="d-inline-flex align-items-center bi bi-moon-fill mx-3" id="themeIcon">
-                                    <i class="badge text-wrap text-bg-primary w-auto mx-2" id="changeTheme" style="cursor: pointer;"></i>
-                                </span>
+                            <span class="bi bi-moon-fill mx-1" id="themeIcon">
+                                <i class="badge text-wrap text-bg-primary w-auto" id="changeTheme" style="cursor: pointer;"></i>
+                            </span>
                         </p>
                     </div>
                     <div class="col-md-3">
@@ -175,11 +175,11 @@ if (isset($_POST['logout'])) {
         </footer>
     </div>
 
-    <script defer type="application/json" src="json/products.json"></script>
-    <script defer src="js/main.js"></script>
-    <script defer src="js/products.js"></script>
-    <script defer src="js/per_product.js"></script>
-    <script defer src="js/changeTheme.js"></script>
+    <script type="application/json" src="json/products.json"></script>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/per_product.js"></script>
+    <script src="js/changeTheme.js"></script>
 </body>
 
 </html>
