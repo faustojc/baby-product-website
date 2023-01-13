@@ -77,7 +77,7 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="about_us.php">About</a>
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
@@ -200,7 +200,7 @@ if (isset($_POST['logout'])) {
                         <h3>Links</h3>
                         <ul class="list-unstyled">
                             <li><a href="home.php" class="text-decoration-none">Home</a></li>
-                            <li><a href="#" class="text-decoration-none">About</a></li>
+                            <li><a href="about_us.php" class="text-decoration-none">About</a></li>
                             <li><a href="#" class="text-decoration-none">Contact</a></li>
                         </ul>
                     </div>

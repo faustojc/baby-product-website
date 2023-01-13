@@ -65,9 +65,9 @@ if (isset($_POST['logout'])) {
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item dropdown my-auto mx-lg-2">
-                                <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Categories
-                                </span>
+                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </span>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="category.php">Nursery and Decoration</a></li>
                                 <li><a class="dropdown-item" href="category.php">Clothes and Diapers</a></li>
@@ -75,7 +75,7 @@ if (isset($_POST['logout'])) {
                             </ul>
                         </li>
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="about_us.php">About</a>
                         </li>
                     </ul>
                     <ul class="navbar my-auto list-unstyled">
@@ -143,8 +143,8 @@ if (isset($_POST['logout'])) {
                     <div class="col-md-3">
                         <h3>Links</h3>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="text-decoration-none">Home</a></li>
-                            <li><a href="#" class="text-decoration-none">About</a></li>
+                            <li><a href="home.php" class="text-decoration-none">Home</a></li>
+                            <li><a href="about_us.php" class="text-decoration-none">About</a></li>
                             <li><a href="#" class="text-decoration-none">Contact</a></li>
                         </ul>
                     </div>
