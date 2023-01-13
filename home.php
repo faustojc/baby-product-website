@@ -134,7 +134,7 @@ if (isset($_POST['logout'])) {
             </div>
 
 
-            <div class="d-flex justify-content-between align-items-center flex-column flex-lg-row my-5" id="mostPopular">
+            <div class="d-flex justify-content-between flex-wrap flex-column flex-lg-row my-5" id="mostPopular">
 
             </div>
 
