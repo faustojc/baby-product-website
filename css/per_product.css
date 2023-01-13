@@ -11,7 +11,7 @@
 }
 
 .act-price {
-    color: red;
+    color: #40a455;
     font-weight: 700
 }
 
@@ -25,16 +25,6 @@
 
 .color {
     margin-bottom: 10px
-}
-
-.btn-danger {
-    background-color: #ff0000 !important;
-    border-color: #ff0000 !important
-}
-
-.btn-danger:hover {
-    background-color: #da0606 !important;
-    border-color: #da0606 !important
 }
 
 .btn-danger:focus {
