@@ -1,11 +1,10 @@
 let productName = sessionStorage.getItem('product');
+let product = {};
 
 if (productName === undefined || productName === null) {
     console.log('No products selected');
 }
 else {
-    let product = {};
-
     for (const element of productsList) {
         if (element.name === productName) {
             product = element;
@@ -35,27 +34,49 @@ else {
                     </div>
                 </div>
                 <p class="about">${product.description}</p>
-                <div class="cart mt-4 align-items-center"> 
-                    <button class="btn btn-outline-success text-uppercase mr-2 px-4">Add to cart</button>  
+                <div class="cart mt-4 d-inline-flex align-items-center"> 
+                    <input type="number" name="quantity" class="quantity bg-body-secondary border border-secondary border-1" id="quantity" title="Quantity" value="1" min="1" max="50">
+                    <button class="btn btn-outline-success text-uppercase mr-2 px-4" id="addCartBtn" type="button" data-bs-toggle="none" data-bs-target="#offcanvas-cart" aria-controls="offcanvas-cart">Add to cart</button>  
                 </div>
             </div>
         </div>
     `;
 
-    backToCategory();
-    addCart();
-}
-
-function backToCategory() {
     document.getElementById('back').addEventListener('click', function () {
         if (sessionStorage.getItem('product') !== null) {
             sessionStorage.removeItem('product');
         }
     });
+
+    addCart();
 }
 
 function addCart() {
-    // TODO: add 'add to cart' functionality with remove specific product, add quantity, and calculate price
+    let addCartBtn = document.querySelector('#addCartBtn');
+
+    addCartBtn.addEventListener('click', function () {
+        let username = document.querySelector('#username').textContent.trim();
+        let quantity = document.querySelector('#quantity').value;
+
+        if (carts.length === 0) {
+            setJSONData(username, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
+            displayCart();
+
+            addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
+            addCartBtn.textContent = "View in cart";
+        }
+        else {
+            for (const element of carts) {
+                if (product.name !== element.name) {
+                    setJSONData(username, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
+                    displayCart();
+
+                    addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
+                    addCartBtn.textContent = "View in cart";
+                }
+            }
+        }
+    });
 }
 
 window.onbeforeunload = function () {

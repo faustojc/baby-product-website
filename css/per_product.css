@@ -27,6 +27,15 @@
     margin-bottom: 10px
 }
 
+.quantity {
+    margin-right: 10px;
+    padding: 6px;
+    width: 90px;
+    border-radius: 3px;
+    text-align: center;
+    color: var(--theme-secondary);
+}
+
 .btn-danger:focus {
     box-shadow: none
 }

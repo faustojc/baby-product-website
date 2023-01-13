@@ -8,9 +8,6 @@ session_start();
 $database = new Database();
 $database->connect();
 
-$email = '';
-$password = '';
-
 $error_info = '';
 
 if (!empty($_COOKIE['email'])) {
@@ -34,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$user = $stmt->fetch();
 
 		if (!empty($user)) {
-            if ($_POST['keepMe'] === 'true') {
+            if (isset($_POST['keepMe'])) {
                 setcookie('email', $email, time() + 8640, '/');
             }
 
@@ -43,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
             $database->conn->close();
 
-			header("Location: home.php");
-			exit;
+            header("Location: home.php");
+            exit;
         } else {
             $error_info = 'Incorrect email or password';
         }

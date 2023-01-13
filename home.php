@@ -86,7 +86,7 @@ if (isset($_POST['logout'])) {
                         <!-- user -->
                         <li class="nav-item dropdown my-auto mx-lg-2">
                             <span class="nav-link d-inline-flex align-items-center dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <p class="bi bi-person m-0"> <?php echo $name?></p>
+                                <p class="bi bi-person m-0" id="username"> <?php echo $name?></p>
                             </span>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item-text">
@@ -222,6 +222,7 @@ if (isset($_POST['logout'])) {
     <script src="js/changeTheme.js"></script>
     <script>
         showProducts();
+        console.log(userInfo);
     </script>
 </body>
 
