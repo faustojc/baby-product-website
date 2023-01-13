@@ -36,7 +36,7 @@ else {
                 </div>
                 <p class="about">${product.description}</p>
                 <div class="cart mt-4 align-items-center"> 
-                    <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button>  
+                    <button class="btn btn-outline-success text-uppercase mr-2 px-4">Add to cart</button>  
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@ function backToCategory() {
 }
 
 function addCart() {
-    // TODO: add 'add to cart' functionality
+    // TODO: add 'add to cart' functionality with remove specific product, add quantity, and calculate price
 }
 
 window.onbeforeunload = function () {
