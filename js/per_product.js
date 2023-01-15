@@ -42,6 +42,20 @@ else {
         </div>
     `;
 
+    let userCart = null;
+
+    if (localStorage.getItem(currUsername) !== null && localStorage.getItem(currUsername) !== undefined) {
+        userCart = JSON.parse(localStorage.getItem(currUsername));
+
+        for (const cart of userCart.carts) {
+            if (cart.name.includes(product.name)) {
+                addCartBtn.textContent = "View in cart";
+                addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
+                break;
+            }
+        }
+    }
+
     document.getElementById('back').addEventListener('click', function () {
         if (sessionStorage.getItem('product') !== null) {
             sessionStorage.removeItem('product');
@@ -55,26 +69,14 @@ function addCart() {
     let addCartBtn = document.querySelector('#addCartBtn');
 
     addCartBtn.addEventListener('click', function () {
-        let username = document.querySelector('#username').textContent.trim();
-        let quantity = document.querySelector('#quantity').value;
+        if (!addCartBtn.textContent.includes("View in cart")) {
+            let quantity = document.querySelector('#quantity').value;
 
-        if (carts.length === 0) {
-            setJSONData(username, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
+            setJSONData(currUsername, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
             displayCart();
 
             addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
             addCartBtn.textContent = "View in cart";
-        }
-        else {
-            for (const element of carts) {
-                if (product.name !== element.name) {
-                    setJSONData(username, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
-                    displayCart();
-
-                    addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
-                    addCartBtn.textContent = "View in cart";
-                }
-            }
         }
     });
 }

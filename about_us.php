@@ -1,4 +1,32 @@
 <?php
+use Server\data\Database;
+
+require_once realpath("vendor/autoload.php");
+
+session_start();
+
+$database = new Database();
+$database->connect();
+
+$result = $database->getData($_SESSION['email']);
+$name = '';
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $name = $row['FIRSTNAME'];
+    }
+}
+
+if (isset($_POST['logout'])) {
+    if (!empty($_COOKIE['email'])) {
+        setcookie('email', "", time() - 8640, '/');
+    }
+
+    session_destroy();
+    session_abort();
+    header("Location: index.php");
+    exit;
+}
 
 ?>
 

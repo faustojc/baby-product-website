@@ -222,7 +222,6 @@ if (isset($_POST['logout'])) {
     <script src="js/changeTheme.js"></script>
     <script>
         showProducts();
-        console.log(userInfo);
     </script>
 </body>
 

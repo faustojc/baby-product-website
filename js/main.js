@@ -1,8 +1,7 @@
-// Template for getting the data -> dataSync[username][data].value
-let dataSync = {};
-let carts = [];
-let totalAmount = 0;
 let currUsername = document.querySelector('#username').textContent.trim();
+let cartList = document.querySelector('#cart-list');
+let dataSync = {};
+let totalAmount = 0;
 
 /**
  * Set or add the user's data to the JSON file by value
@@ -11,53 +10,35 @@ let currUsername = document.querySelector('#username').textContent.trim();
  * @param {any[] | string | number} value The value to set or add to user's data, can be an array in JSON format
  */
 function setJSONData(username, data, value) {
-    // Initialize new user's name if it doesn't exist
-    if(!dataSync[username]){
-        dataSync[username] = {};
+    if (localStorage.getItem(username) !== null && localStorage.getItem(username) !== undefined) {
+        dataSync = JSON.parse(localStorage.getItem(username));
     }
-    // Initialize new data of user if it doesn't exit
-    if(!dataSync[username][data]){
-        dataSync[username][data] = []
+
+    // Initialize new data if it doesn't exist
+    if(!dataSync[data]){
+        dataSync[data] = [];
     }
     // Add the value to the user's data if the value is JSON array
     if (typeof value === typeof []) {
-        let length = dataSync[username][data].length;
+        let length = dataSync[data].length;
 
         if (length !== 0) {
-            for (const element of dataSync[username][data]) {
-                if (element.name === value.name) {
+            for (const element of dataSync[data]) {
+                if (element.name.includes(value.name)) {
                     element.quantity += value.quantity;
                 }
-                else {
-                    dataSync[username][data].push(value);
-                }
+                else dataSync[data].push(value);
             }
         }
-        else dataSync[username][data].push(value);
-    }
-    // Add the value if the JSON array is in string and add to user's data
-    else if (typeof JSON.parse(value) === typeof []) {
-        let valueJSON = JSON.parse(value);
-        let length = dataSync[username][data].length;
-
-        if (length !== 0) {
-            for (const element of dataSync[username][data]) {
-                if (element.name === valueJSON.name) {
-                    element.quantity += valueJSON.quantity;
-                }
-                else {
-                    dataSync[username][data].push(valueJSON);
-                }
-            }
-        }
-        else dataSync[username][data].push(valueJSON);
+        else dataSync[data].push(value);
     }
     // Set the data value of user
     else {
-        dataSync[username][data] = value;
+        dataSync[data] = value;
     }
-}
 
+    localStorage.setItem(username, JSON.stringify(dataSync));
+}
 
 /**
  * Removes the data in JSON file
@@ -74,44 +55,28 @@ function removeJSONData(username, data, value) {
 /**
  * Data template for cart
  * dataSync = {
- *     "username": {
- *         "data": [
- *             {
- *                 "name": "product name",
- *                 "category": "product category",
- *                 "price": 123,
- *                 "picture": "product/file/path",
- *                 "quantity": 2
- *             }
- *         ]
- *     }
+ *      "data": [
+ *          {
+ *              "name": "product name",
+ *              "category": "product category",
+ *              "price": 123,
+ *              "picture": "product/file/path",
+ *              "quantity": 2
+ *          }
+ *      ]
  * }
  */
 function displayCart() {
-    let usernames = Object.keys(dataSync);
+    let userCarts = JSON.parse(localStorage.getItem(currUsername));
 
-    for (const name of usernames) {
-        if (currUsername === name) {
-            if (carts.length === 0) {
-                carts.push(dataSync[name]["carts"]);
-                displayProduct(dataSync[name]["carts"][0]);
-            }
-            else {
-                for (const prod of carts) {
-                    // If the product is not in cart, add to cartList and display
-                    let notInCart = dataSync[name]["carts"].find(value => value.name !== prod.name);
-
-                    if (notInCart) {
-                        carts.push(prod);
-                        displayProduct(prod);
-                        break;
-                    }
-                }
-            }
+    if (userCarts !== null) {
+        for (const product of userCarts.carts) {
+            displayProduct(product);
         }
+
+        document.querySelector('#cart-count').textContent = userCarts.carts.length;
     }
 
-    document.querySelector('#cart-count').textContent = carts.length;
     removeCartBtn();
 }
 
@@ -122,13 +87,12 @@ function removeCartBtn() {
         removeBtn.addEventListener('click', function (event) {
             let productName = event.target.closest(".productCart").querySelector('.prodName').textContent.trim();
             let addCartBtn = document.querySelector('#addCartBtn');
+            let userCart = JSON.parse(localStorage.getItem(currUsername));
 
-            for (let i = 0; i < carts.length; i++) {
-                let x = typeof carts[i][i].name;
-
-                if (carts[i][i].name === productName) {
-                    carts.splice(i, 1);
-                    break;
+            // remove the deleted cart from the user's cart list
+            for (let i = 0; i < userCart.carts.length; i++) {
+                if (userCart.carts[i].name === productName) {
+                    userCart.carts.splice(i, 1);
                 }
             }
 
@@ -136,14 +100,13 @@ function removeCartBtn() {
             addCartBtn.textContent = "Add to cart";
             event.target.closest('.productCart').remove();
 
-            document.querySelector('#cart-count').textContent = carts.length;
+            localStorage.setItem(currUsername, JSON.stringify(userCart));
+            document.querySelector('#cart-count').textContent = userCart.carts.length;
         })
     }
 }
 
 function displayProduct(product) {
-    let cartList = document.querySelector('#cart-list');
-
     cartList.innerHTML += `
         <div class="row mb-4 flex-column productCart">
             <div class="row mb-4 mb-lg-0">
@@ -174,5 +137,6 @@ function displayProduct(product) {
 }
 
 window.onload = function () {
+    cartList.innerHTML = '';
     displayCart();
 }
