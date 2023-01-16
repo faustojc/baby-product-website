@@ -226,13 +226,13 @@ function getActiveNav() {
     let bath = document.querySelector('#bath');
 
     if (nursery.classList.contains("active")) {
-        activeNav = nursery.id;
+        activeNav = nursery.textContent;
     }
     else if (clothes.classList.contains("active")) {
-        activeNav = clothes.id;
+        activeNav = clothes.textContent;
     }
     else {
-        activeNav = bath.id;
+        activeNav = bath.textContent;
     }
 
     // nursery
@@ -242,7 +242,7 @@ function getActiveNav() {
 
         // Make active by adding active class
         document.querySelector('#nursery').className += ' active';
-        activeNav = nursery.id;
+        activeNav = nursery.textContent;
         showCategoryProducts();
     });
 
@@ -253,7 +253,7 @@ function getActiveNav() {
 
         // Make active by adding active class
         document.querySelector('#clothes').className += ' active';
-        activeNav = clothes.id;
+        activeNav = clothes.textContent;
         showCategoryProducts();
     });
 
@@ -264,7 +264,7 @@ function getActiveNav() {
 
         // Make active by adding active class
         document.querySelector('#bath').className += ' active';
-        activeNav = bath.id;
+        activeNav = bath.textContent;
         showCategoryProducts();
     });
 }
@@ -275,57 +275,42 @@ function getActiveNav() {
  * @param {string} value The value to remove
  */
 function removeSpecificClass(selector, value) {
-    document.querySelectorAll(selector).forEach(function (element) {
+    document.querySelectorAll(selector).forEach(element => {
         element.classList.remove(value);
     })
 }
 
 function showCategoryProducts() {
-    let category = " ";
-
-    switch (activeNav) {
-        case "nursery":
-            category = "Nursery and Decoration";
-            break;
-        case "clothes":
-            category = "Clothes and Diapers";
-            break;
-        case "bath":
-            category = "Bath and Potty";
-            break;
-    }
-
     let productsContainer = document.getElementById("currentCategory");
 
     if (productsContainer.hasChildNodes()) {
         productsContainer.textContent = '';
     }
 
-    for (let i = 0; i < length; i++) {
-        if (productsList[i].category === category) {
+    productsList.forEach(info => {
+        if (info.category === activeNav) {
             document.getElementById("currentCategory").innerHTML += `
             <div class="card m-2" style="width: 18rem; height: 100%;">
-                <img src="${productsList[i].picture}" class="card-img-top" height="280" alt="product"/>
+                <img src="${info.picture}" class="card-img-top" height="280" alt="product"/>
                 <div class="card-body p-2">
-                    <h4 class="card-title">${productsList[i].name}</h4>
-                    <h6 class="card-text">Price: P<span class="text-success">${productsList[i].price}</span></h6>
-                    <button class="btn btn-outline-info shopBtn" type="button" value="${productsList[i].name}">Shop now</button>
+                    <h4 class="card-title">${info.name}</h4>
+                    <h6 class="card-text">Price: P<span class="text-success">${info.price}</span></h6>
+                    <button class="btn btn-outline-info shopBtn" type="button" value="${info.name}">Shop now</button>
                 </div>
             </div>`;
         }
-    }
+    });
 
     shopBtnValue();
 }
 
 function shopBtnValue() {
     let shopBtn = document.querySelectorAll('.shopBtn');
-    let length = shopBtn.length;
 
-    for (let i = 0; i < length; i++) {
-        shopBtn[i].addEventListener('click', function (event) {
-            sessionStorage.setItem('product', this.value);
+    shopBtn.forEach(btn => {
+        btn.addEventListener('click', event => {
+            sessionStorage.setItem('product', event.target.value);
             location.href = "per_product.php";
         });
-    }
+    });
 }
