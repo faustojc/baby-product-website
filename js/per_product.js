@@ -1,18 +1,14 @@
 let productName = sessionStorage.getItem('product');
 let product = {};
 
-if (productName === undefined || productName === null) {
-    console.log('No products selected');
-}
-else {
-    for (const element of productsList) {
-        if (element.name === productName) {
-            product = element;
-            break;
-        }
+for (const p of productsList) {
+    if (p.name === productName) {
+        product = p;
+        break;
     }
+}
 
-    document.getElementById('productInfo').innerHTML += `
+document.getElementById('productInfo').innerHTML += `
         <div class="col-md-6">
             <div class="images p-3">
                 <div class="text-center p-4"> <img src="${product.picture}" id="productImg" width="250" alt="product image"/> </div>
@@ -42,47 +38,36 @@ else {
         </div>
     `;
 
-    let userCart = null;
+let userCart = null;
 
-    if (localStorage.getItem(currUsername) !== null && localStorage.getItem(currUsername) !== undefined) {
-        userCart = JSON.parse(localStorage.getItem(currUsername));
+if (localStorage.getItem(currUsername) !== null && localStorage.getItem(currUsername) !== undefined) {
+    userCart = JSON.parse(localStorage.getItem(currUsername));
 
-        for (const cart of userCart.carts) {
-            if (cart.name.includes(product.name)) {
-                addCartBtn.textContent = "View in cart";
-                addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
-                break;
-            }
+    for (const cart of userCart.carts) {
+        if (cart.name.includes(product.name)) {
+            addCartBtn.textContent = "View in cart";
+            addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
+            break;
         }
     }
-
-    document.getElementById('back').addEventListener('click', function () {
-        if (sessionStorage.getItem('product') !== null) {
-            sessionStorage.removeItem('product');
-        }
-    });
-
-    addCart();
 }
 
-function addCart() {
-    let addCartBtn = document.querySelector('#addCartBtn');
-
-    addCartBtn.addEventListener('click', () => {
-        if (!addCartBtn.textContent.includes("View in cart")) {
-            let quantity = document.querySelector('#quantity').value;
-
-            setJSONData(currUsername, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
-            displayCart();
-
-            addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
-            addCartBtn.textContent = "View in cart";
-        }
-    });
-}
-
-window.onbeforeunload = function () {
-    if (product !== null) {
+document.getElementById('back').addEventListener('click', function () {
+    if (sessionStorage.getItem('product') !== null) {
         sessionStorage.removeItem('product');
     }
-};
+});
+
+let addCartBtn = document.querySelector('#addCartBtn');
+
+addCartBtn.addEventListener('click', () => {
+    if (!addCartBtn.textContent.includes("View in cart")) {
+        let quantity = document.querySelector('#quantity').value;
+
+        setJSONData(currUsername, "carts", {name: product.name, category: product.category, price: product.price, picture: product.picture, quantity: Number.parseInt(quantity)});
+        displayCart();
+
+        addCartBtn.setAttribute("data-bs-toggle", "offcanvas");
+        addCartBtn.textContent = "View in cart";
+    }
+});
