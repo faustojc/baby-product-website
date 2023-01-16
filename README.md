@@ -1,8 +1,8 @@
 
 # Baby product website
-Cloudbased 1st sem endterm project
+3rd year Cloudbase e-commerce project website.
 
-Using the XAMPP for server hosting and database management
+Using the XAMPP for server and database management.
 
 # For Collaborators
 - The <code>test.php</code> is the <strong>template</strong> using for faster and easily webapage creation. <strong>Copy and rename </strong> it and use the Bootstrap 5.3 for creation.
