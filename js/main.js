@@ -61,13 +61,11 @@ function displayCart() {
 
     cartList.innerHTML = '';
 
-    if (userCarts !== null) {
-        for (const product of userCarts.carts) {
-            displayProduct(product);
-        }
+    userCarts.carts.forEach((product) => {
+        displayProduct(product);
+    });
 
-        document.querySelector('#cart-count').textContent = userCarts.carts.length;
-    }
+    document.querySelector('#cart-count').textContent = userCarts.carts.length;
 
     removeCartBtn();
 }
