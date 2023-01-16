@@ -53,7 +53,7 @@ if (isset($_POST['logout'])) {
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg w-100" style="background-color: var(--theme-primary)">
             <div class="container-fluid">
-                <a class="navbar-brand" href="main.php">
+                <a class="navbar-brand" href="home.php">
                     <img class="w-75" src="images/angelcare-logo.png" alt="">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" >
