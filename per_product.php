@@ -62,7 +62,7 @@ if (isset($_POST['logout'])) {
                 <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
                     <ul class="navbar-nav my-auto">
                         <li class="nav-item my-auto mx-lg-2">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                         </li>
                         <li class="nav-item dropdown my-auto mx-lg-2">
                             <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
