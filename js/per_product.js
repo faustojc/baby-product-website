@@ -68,7 +68,7 @@ else {
 function addCart() {
     let addCartBtn = document.querySelector('#addCartBtn');
 
-    addCartBtn.addEventListener('click', function () {
+    addCartBtn.addEventListener('click', () => {
         if (!addCartBtn.textContent.includes("View in cart")) {
             let quantity = document.querySelector('#quantity').value;
 
