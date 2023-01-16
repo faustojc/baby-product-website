@@ -24,15 +24,13 @@ function setJSONData(username, data, value) {
         let length = dataSync[data].length;
 
         if (length !== 0) {
-            for (const element of dataSync[data]) {
-                if (element.name.includes(value.name)) {
-                    element.quantity += value.quantity;
-                }
+            dataSync[data].some((d) => {
+                if (d.name.includes(value.name)) d.quantity += value.quantity;
                 else {
                     dataSync[data].push(value);
-                    break;
+                    return true;
                 }
-            }
+            });
         }
         else dataSync[data].push(value);
     }
@@ -110,11 +108,11 @@ function displayProduct(product) {
             </div>
             <div class="row mb-4 mb-lg-0 pt-2">
                 <div class="col" style="max-width: 250px">
-                    <button class="btn btn-primary p-2 me-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                    <button class="btn btn-primary p-2 me-2 w-25" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                         <i class="bi bi-chevron-down"></i>
                     </button>
-                    <input type="number" value="${product.quantity}" min="1" max="50" id="quantity">
-                    <button class="btn btn-primary p-2 ms-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                    <input class="h-100 bg-body-secondary text-center" type="number" value="${product.quantity}" min="1" max="50" id="quantity">
+                    <button class="btn btn-primary p-2 ms-2 w-25" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="bi bi-chevron-up"></i>
                     </button>
                 </div>
