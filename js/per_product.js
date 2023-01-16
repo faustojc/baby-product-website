@@ -39,6 +39,7 @@ document.getElementById('productInfo').innerHTML += `
     `;
 
 let userCart = null;
+let addCartBtn = document.querySelector('#addCartBtn');
 
 if (localStorage.getItem(currUsername) !== null && localStorage.getItem(currUsername) !== undefined) {
     userCart = JSON.parse(localStorage.getItem(currUsername));
@@ -57,8 +58,6 @@ document.getElementById('back').addEventListener('click', function () {
         sessionStorage.removeItem('product');
     }
 });
-
-let addCartBtn = document.querySelector('#addCartBtn');
 
 addCartBtn.addEventListener('click', () => {
     if (!addCartBtn.textContent.includes("View in cart")) {
