@@ -72,6 +72,7 @@ function displayCart() {
 
 function removeCartBtn() {
     let removeCart = document.querySelectorAll('.productCart');
+    let addCartBtn = document.querySelector('#addCartBtn');
 
     removeCart.forEach((remove) => {
         remove.querySelector('.removeCart').addEventListener('click', event => {
@@ -83,6 +84,11 @@ function removeCartBtn() {
                 if (userCart.carts[i].name.includes(productName)) {
                     userCart.carts.splice(i, 1);
                 }
+            }
+
+            if (addCartBtn !== null) {
+                addCartBtn.textContent = "Add to cart";
+                addCartBtn.setAttribute("data-bs-toggle", "none");
             }
 
             event.target.closest('.productCart').remove();
