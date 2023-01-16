@@ -111,14 +111,12 @@ function displayProduct(product) {
                     <button class="btn btn-primary p-2 me-2 w-25" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                         <i class="bi bi-chevron-down"></i>
                     </button>
-                    <input class="h-100 bg-body-secondary text-center" type="number" value="${product.quantity}" min="1" max="50" id="quantity">
+                    <input class="h-100 bg-body text-center text-info-emphasis border rounded-3 border-1 border-secondary" type="number" value="${product.quantity}" min="1" max="50" id="quantity">
                     <button class="btn btn-primary p-2 ms-2 w-25" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="bi bi-chevron-up"></i>
                     </button>
                 </div>
-                <p class="col-4 text-md-center">
-                    <strong>P ${product.price}.00</strong>
-                </p>
+                <p class="col-4 text-center mb-0 fw-bold">P ${product.price}.00</p>
             </div>
             <hr class="my-4">
         </div>
