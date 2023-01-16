@@ -6,7 +6,7 @@ Using the XAMPP for server hosting and database management
 
 # For Collaborators
 - The <code>test.php</code> is the <strong>template</strong> using for faster and easily webapage creation. <strong>Copy and rename </strong> it and use the Bootstrap 5.3 for creation.
-- Use the <code>main.php</code> for main webpage when the user logged in. It will be used for the main page
+- Use the <code>home.php</code> for main webpage when the user logged in. It will be used for the main page
 - For javascript and CSS. Put the bootstrap CSS and JS inside on ``<head></head>``  while the custom JS, place it before the ``</body>`` tag. Follow the format code below.
 
 ```html
