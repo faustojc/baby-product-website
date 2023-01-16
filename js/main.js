@@ -1,6 +1,5 @@
 let currUsername = document.querySelector('#username').textContent.trim();
 let cartList = document.querySelector('#cart-list');
-let dataSync = {};
 let totalAmount = 0;
 
 /**
@@ -10,6 +9,8 @@ let totalAmount = 0;
  * @param {any[] | string | number} value The value to set or add to user's data, can be an array in JSON format
  */
 function setJSONData(username, data, value) {
+    let dataSync = {};
+
     if (localStorage.getItem(username) !== null && localStorage.getItem(username) !== undefined) {
         dataSync = JSON.parse(localStorage.getItem(username));
     }
@@ -27,7 +28,10 @@ function setJSONData(username, data, value) {
                 if (element.name.includes(value.name)) {
                     element.quantity += value.quantity;
                 }
-                else dataSync[data].push(value);
+                else {
+                    dataSync[data].push(value);
+                    break;
+                }
             }
         }
         else dataSync[data].push(value);
@@ -38,18 +42,6 @@ function setJSONData(username, data, value) {
     }
 
     localStorage.setItem(username, JSON.stringify(dataSync));
-}
-
-/**
- * Removes the data in JSON file
- * @param {string} username The user's info
- * @param {string} data the data to remove
- * @param {any[] | string | number} value The value to remove from user's data, can be an array in JSON format
- */
-function removeJSONData(username, data, value) {
-    if(dataSync[username] && dataSync[username][data]) {
-        dataSync[username][data] = dataSync[username][data].filter(el => el.name !== value.name);
-    }
 }
 
 /**
@@ -69,6 +61,8 @@ function removeJSONData(username, data, value) {
 function displayCart() {
     let userCarts = JSON.parse(localStorage.getItem(currUsername));
 
+    cartList.innerHTML = '';
+
     if (userCarts !== null) {
         for (const product of userCarts.carts) {
             displayProduct(product);
@@ -81,29 +75,26 @@ function displayCart() {
 }
 
 function removeCartBtn() {
-    let removeCart = document.querySelectorAll('.removeCart');
+    let removeCart = document.querySelectorAll('.productCart');
 
-    for (const removeBtn of removeCart) {
-        removeBtn.addEventListener('click', function (event) {
+    removeCart.forEach((remove) => {
+        remove.querySelector('.removeCart').addEventListener('click', event => {
             let productName = event.target.closest(".productCart").querySelector('.prodName').textContent.trim();
-            let addCartBtn = document.querySelector('#addCartBtn');
             let userCart = JSON.parse(localStorage.getItem(currUsername));
 
             // remove the deleted cart from the user's cart list
             for (let i = 0; i < userCart.carts.length; i++) {
-                if (userCart.carts[i].name === productName) {
+                if (userCart.carts[i].name.includes(productName)) {
                     userCart.carts.splice(i, 1);
                 }
             }
 
-            addCartBtn.setAttribute("data-bs-toggle", "none");
-            addCartBtn.textContent = "Add to cart";
             event.target.closest('.productCart').remove();
 
             localStorage.setItem(currUsername, JSON.stringify(userCart));
             document.querySelector('#cart-count').textContent = userCart.carts.length;
-        })
-    }
+        });
+    });
 }
 
 function displayProduct(product) {
@@ -137,6 +128,5 @@ function displayProduct(product) {
 }
 
 window.onload = function () {
-    cartList.innerHTML = '';
     displayCart();
 }
